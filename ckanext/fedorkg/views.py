@@ -1,14 +1,14 @@
 
-from flask import Blueprint
+from flask import Blueprint, render_template
 
-fedorkg = Blueprint('fedorkg', __name__)
+fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
 
 
 def sparql():
-    return 'Hello, this is FedORKG!'
+    return render_template('sparql.jinja2')
 
 
-fedorkg.add_url_rule('/fedorkg/sparql', view_func=sparql)
+fedorkg.add_url_rule('/sparql', view_func=sparql)
 
 
 def get_blueprints():
