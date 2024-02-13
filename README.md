@@ -3,6 +3,8 @@
 # FedORKG
 
 `ckanext-fedorkg` is a CKAN plugin that adds support to query open research knowledge graphs via SPARQL queries.
+FedORKG uses [DeTrusty](https://github.com/SDM-TIB/DeTrusty/) as federated query engine.
+The visual query editor connecting the frontend and DeTrusty is implemented using the JavaScript library [YASGUI](https://github.com/TriplyDB/yasgui).
 
 ## License
 
