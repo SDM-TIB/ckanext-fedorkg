@@ -1,12 +1,6 @@
 {% ckan_extends %}
 
-{% block header_site_navigation %}
+{% block header_site_navigation_tabs %}
     {{ super() }}
-    <nav class="section navigation">
-        <ul class="nav nav-pills">
-            <li>
-                <a href="/fedorkg/sparql">FedORKG</a>
-            </li>
-        </ul>
-    </nav>
+    <li><a href="/fedorkg/sparql">FedORKG</a></li>
 {% endblock %}
