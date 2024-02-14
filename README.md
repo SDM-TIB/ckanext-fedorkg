@@ -6,6 +6,10 @@
 FedORKG uses [DeTrusty](https://github.com/SDM-TIB/DeTrusty/) as federated query engine.
 The visual query editor connecting the frontend and DeTrusty is implemented using the JavaScript library [YASGUI](https://github.com/TriplyDB/yasgui).
 
+## Changelog
+
+If you are interested in what has changed, check out the [changelog](CHANGELOG.md).
+
 ## License
 
 `ckanext-fedorkg` is licensed under GPL-3.0, see the [license file](LICENSE).
