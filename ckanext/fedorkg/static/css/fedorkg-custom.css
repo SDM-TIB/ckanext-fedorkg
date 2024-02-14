@@ -7,3 +7,15 @@
 .main .primary {
   min-height: 800px;
 }
+
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
