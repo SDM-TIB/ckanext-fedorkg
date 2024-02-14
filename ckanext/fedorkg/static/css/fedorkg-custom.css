@@ -6,10 +6,12 @@
 
 .main .primary {
   min-height: 800px;
+  width: 100%;
 }
 
-.ms-2 {
+.mx-2 {
   margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
 }
 
 .mt-2 {
