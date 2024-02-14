@@ -1,9 +1,21 @@
 
+import os
+
 from DeTrusty import run_query
 from DeTrusty.Molecule.MTManager import get_config
 from flask import Blueprint, render_template, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
+
+
+def config():
+    storage_path = os.environ.get('CKAN_STORAGE_PATH', '/var/lib/ckan')
+    fedorkg_path = os.path.join(storage_path, 'fedorkg')
+    os.makedirs(fedorkg_path, exist_ok=True)
+    return get_config(os.path.join(fedorkg_path, 'rdfmts.json'))
+
+
+detrusty_config = config()
 
 
 def query_editor():
@@ -18,7 +30,7 @@ def sparql():
     return jsonify(
         run_query(
             query=query,
-            config=get_config('/DeTrusty/Config/rdfmts.json'),
+            config=detrusty_config,
             join_stars_locally=False,
             yasqe=yasqe
         )
