@@ -3,7 +3,8 @@ import os
 
 from DeTrusty import run_query
 from DeTrusty.Molecule.MTManager import get_config
-from flask import Blueprint, render_template, jsonify, request
+from ckan.plugins import toolkit
+from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
 
@@ -19,7 +20,7 @@ detrusty_config = config()
 
 
 def query_editor():
-    return render_template('sparql.jinja2')
+    return toolkit.render('sparql.jinja2')
 
 
 def sparql():
