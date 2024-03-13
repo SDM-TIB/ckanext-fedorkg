@@ -6,6 +6,30 @@
 FedORKG uses [DeTrusty](https://github.com/SDM-TIB/DeTrusty/) as federated query engine.
 The visual query editor connecting the frontend and DeTrusty is implemented using the JavaScript library [YASGUI](https://github.com/TriplyDB/yasgui).
 
+## Installation
+
+As usual for CKAN extensions, you can install `ckanext-fedorkg` as follows:
+
+```bash
+git clone git@github.com:SDM-TIB/ckanext-fedorkg.git
+pip install -e ./ckanext-fedorkg
+pip install -r ./ckanext-fedorkg/requirements.txt
+```
+
+The path for the source description file of DeTrusty is:
+
+```
+$CKAN_STORAGE_PATH$/fedorkg/rdfmts.json
+```
+
+`$CKAN_STORAGE_PATH$` defaults to `/var/lib/ckan`.
+
+Then add `fedorkg` to the plugins in your `ckan.ini`.
+
+> [!NOTE]
+> If you have `ckanext-scheming` installed, you have to mention `fedorkg` before the scheming extension in your `ckan.ini`.
+> Otherwise the scheming extension overrides the changes of the FedORKG plugin.
+
 ## Changelog
 
 If you are interested in what has changed, check out the [changelog](CHANGELOG.md).
