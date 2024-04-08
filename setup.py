@@ -66,7 +66,6 @@ setup(
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
     include_package_data=True,
-    package_data={'ckanext.fedorkg': ['static/*', 'templates/*']},
 
     # Although 'package_data' is the preferred approach, in some case you may
     # need to place data files outside of your packages.
@@ -94,6 +93,7 @@ setup(
             ('**.py', 'python', None),
             ('**.js', 'javascript', None),
             ('**/templates/**.jinja2', 'ckan', None),
+            ('**/templates/**.html', 'ckan', None),
         ],
     }
 )

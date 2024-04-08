@@ -22,4 +22,4 @@ class FedORKGController:
             return toolkit.render('admin.jinja2',
                                   extra_vars={'kgs': sorted(list(detrusty_config.getEndpoints().keys()))})
         except logic.NotAuthorized:
-            base.abort(403, 'Need to be system administrator to administer.')
+            base.abort(403, toolkit._('Need to be system administrator to administer.'))

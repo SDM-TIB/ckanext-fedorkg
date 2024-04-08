@@ -1,12 +1,12 @@
 {% extends "admin/base.html" %}
 
 {% block primary_content_inner %}
-    <h2>Knowledge Graphs in the Federation</h2>
+    <h2>{% trans %}Knowledge Graphs in the Federation{% endtrans %}</h2>
 
     <table class="table table-header table-hover table-bordered">
         <thead>
             <tr>
-                <th>Knowledge Graph</th>
+                <th>{% trans %}Knowledge Graph{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,10 +26,10 @@
             FedORKG
         </h2>
         <div class="module-content">
-            <p>
+            <p>{% trans %}
                 Manage the knowledge graphs that are included in the federation of FedORKG.
                 Only included knowledge graphs can be queried.
-            </p>
+            {% endtrans %}</p>
         </div>
     </div>
 {% endblock %}

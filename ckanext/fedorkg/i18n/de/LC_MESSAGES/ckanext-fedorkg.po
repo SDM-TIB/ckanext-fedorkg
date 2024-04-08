@@ -1,0 +1,49 @@
+# German translations for ckanext-fedorkg.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the ckanext-fedorkg
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-fedorkg 0.1.2\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-04-08 14:16+0200\n"
+"PO-Revision-Date: 2024-04-08 13:44+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ckanext/fedorkg/controller.py:25
+msgid "Need to be system administrator to administer."
+msgstr "Nur Systemadministratoren haben hier Zugriff."
+
+#: ckanext/fedorkg/templates/admin.jinja2:4
+msgid "Knowledge Graphs in the Federation"
+msgstr "Wissensgraphen in der Föderation"
+
+#: ckanext/fedorkg/templates/admin.jinja2:9
+msgid "Knowledge Graph"
+msgstr "Wissensgraph"
+
+#: ckanext/fedorkg/templates/admin.jinja2:29
+msgid ""
+"Manage the knowledge graphs that are included in the federation of "
+"FedORKG. Only included knowledge graphs can be queried."
+msgstr ""
+"Verwaltung der Wissensgraphen, die in der Föderation von FedORKG integriert sind."
+"Nur enthaltene Wissensgraphen können für Anfragen verwendet werden."
+
+#: ckanext/fedorkg/templates/sparql.jinja2:12
+msgid ""
+"You can use the SPARQL query editor below to run SPARQL queries over a "
+"federation of open research knowledge graphs."
+msgstr ""
+"Der untenstehende SPARQL Anfrage-Editor kann genutzt werden, um SPARQL "
+"Anfragen über eine Föderation von Wissensgraphen auszuführen."
+
