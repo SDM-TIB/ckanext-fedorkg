@@ -4,9 +4,11 @@ import os
 from DeTrusty import run_query
 from DeTrusty.Molecule.MTManager import get_config
 from ckan.plugins import toolkit
+from ckanext.fedorkg.controller import FedORKGController
 from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
+admin_bp = Blueprint('fedorkg_admin', __name__ + '_admin', url_prefix='/ckan-admin')
 
 
 def config():
@@ -40,7 +42,8 @@ def sparql():
 
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
 fedorkg.add_url_rule('/sparql', view_func=sparql, methods=['POST'])
+admin_bp.add_url_rule('/fedorkg', view_func=FedORKGController.admin, methods=['GET'])
 
 
 def get_blueprints():
-    return [fedorkg]
+    return [fedorkg, admin_bp]

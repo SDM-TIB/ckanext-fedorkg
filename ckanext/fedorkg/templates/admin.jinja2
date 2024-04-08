@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+
+{% block primary_content_inner %}
+    <h2>Knowledge Graphs in the Federation</h2>
+
+    <table class="table table-header table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Knowledge Graph</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for kg in kgs %}
+                <tr>
+                    <td>{{ kg }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block secondary_content %}
+    <div class="module module-narrow module-shallow">
+        <h2 class="module-heading">
+            <i class="fa fa-info-circle"></i>
+            FedORKG
+        </h2>
+        <div class="module-content">
+            <p>
+                Manage the knowledge graphs that are included in the federation of FedORKG.
+                Only included knowledge graphs can be queried.
+            </p>
+        </div>
+    </div>
+{% endblock %}
