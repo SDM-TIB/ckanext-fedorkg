@@ -1,7 +1,7 @@
 {% extends "page.html" %}
 
 {% block breadcrumb_content %}
-    <li class="active"><a href="/fedorkg/sparql">FedORKG</a></li>
+    <li class="active"><a href="{{ h.url_for('fedorkg.query_editor') }}">FedORKG</a></li>
 {% endblock %}
 
 {% block secondary %}{% endblock %}
