@@ -21,9 +21,9 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('static', 'fedorkg')
         if toolkit.check_ckan_version(min_version='2.10'):
-            icon='magnifying-glass'
+            icon = 'magnifying-glass'
         else:
-            icon='search'
+            icon = 'search'
         toolkit.add_ckan_admin_tab(config_, 'fedorkg_admin.admin', 'FedORKG', icon=icon)
 
     def get_blueprint(self):
