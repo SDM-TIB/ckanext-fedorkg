@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.2.1 - 2024-04-10
+- Choose admin tab icon based on CKAN version
+
 # v0.2.0 - 2024-04-09
 - Add first simple version of an admin interface
 - Add internationalization support
