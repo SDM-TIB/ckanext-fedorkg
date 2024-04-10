@@ -20,7 +20,11 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('static', 'fedorkg')
-        toolkit.add_ckan_admin_tab(config_, 'fedorkg_admin.admin', 'FedORKG', icon='magnifying-glass')
+        if toolkit.check_ckan_version(min_version='2.10'):
+            icon='magnifying-glass'
+        else:
+            icon='search'
+        toolkit.add_ckan_admin_tab(config_, 'fedorkg_admin.admin', 'FedORKG', icon=icon)
 
     def get_blueprint(self):
         return views.get_blueprints()
