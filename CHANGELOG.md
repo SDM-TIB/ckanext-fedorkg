@@ -1,5 +1,9 @@
 # Changelog
 
+# v0.2.2 - 2024-04-12
+- Update `DeTrusty` to `v0.15.4`
+- Add footer
+
 # v0.2.1 - 2024-04-10
 - Choose admin tab icon based on CKAN version
 
