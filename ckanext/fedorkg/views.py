@@ -1,9 +1,11 @@
 
 import os
 
+from DeTrusty import __version__ as detrusty_version
 from DeTrusty import run_query
 from DeTrusty.Molecule.MTManager import get_config
 from ckan.plugins import toolkit
+from ckanext.fedorkg import __version__ as fedorkg_version
 from ckanext.fedorkg.controller import FedORKGController
 from flask import Blueprint, jsonify, request
 
@@ -22,7 +24,11 @@ detrusty_config = config()
 
 
 def query_editor():
-    return toolkit.render('sparql.jinja2')
+    return toolkit.render('sparql.jinja2',
+                          extra_vars={
+                              'detrusty_version': detrusty_version,
+                              'fedorkg_version': fedorkg_version
+                          })
 
 
 def sparql():
