@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-08 14:16+0200\n"
+"POT-Creation-Date: 2024-04-19 11:32+0200\n"
 "PO-Revision-Date: 2024-04-08 13:44+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -19,25 +19,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ckanext/fedorkg/controller.py:25
+#: ckanext/fedorkg/controller.py:23
 msgid "Need to be system administrator to administer."
 msgstr "Nur Systemadministratoren haben hier Zugriff."
 
-#: ckanext/fedorkg/templates/admin.jinja2:4
+#: ckanext/fedorkg/controller.py:32
+msgid "There was an error when deleting {kg} from the federation!"
+msgstr "Beim Entfernen von {kg} aus der Föderation ist ein Fehler aufgetreten."
+
+#: ckanext/fedorkg/controller.py:34
+msgid "Successfully removed {kg} from the federation!"
+msgstr "{kg} wurde erfolgreich von der Föderation entfernt."
+
+#: ckanext/fedorkg/templates/admin.jinja2:5
 msgid "Knowledge Graphs in the Federation"
 msgstr "Wissensgraphen in der Föderation"
 
-#: ckanext/fedorkg/templates/admin.jinja2:9
+#: ckanext/fedorkg/templates/admin.jinja2:16
 msgid "Knowledge Graph"
 msgstr "Wissensgraph"
 
-#: ckanext/fedorkg/templates/admin.jinja2:29
+#: ckanext/fedorkg/templates/admin.jinja2:27
+msgid "Remove knowledge graph from federation"
+msgstr "Entferne Wissensgraph aus der Föderation"
+
+#: ckanext/fedorkg/templates/admin.jinja2:45
 msgid ""
 "Manage the knowledge graphs that are included in the federation of "
 "FedORKG. Only included knowledge graphs can be queried."
 msgstr ""
-"Verwaltung der Wissensgraphen, die in der Föderation von FedORKG integriert sind."
-"Nur enthaltene Wissensgraphen können für Anfragen verwendet werden."
+"Verwaltung der Wissensgraphen, die in der Föderation von FedORKG "
+"integriert sind. Nur enthaltene Wissensgraphen können für Anfragen "
+"verwendet werden."
 
 #: ckanext/fedorkg/templates/sparql.jinja2:12
 msgid ""
