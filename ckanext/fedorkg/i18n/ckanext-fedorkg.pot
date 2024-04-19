@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.2.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-19 11:32+0200\n"
+"POT-Creation-Date: 2024-04-19 11:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,20 @@ msgstr ""
 msgid "Need to be system administrator to administer."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:32
+#: ckanext/fedorkg/controller.py:34
 msgid "There was an error when deleting {kg} from the federation!"
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:34
+#: ckanext/fedorkg/controller.py:36
 msgid "Successfully removed {kg} from the federation!"
+msgstr ""
+
+#: ckanext/fedorkg/controller.py:43
+msgid "There was an error when adding {kg} from the federation!"
+msgstr ""
+
+#: ckanext/fedorkg/controller.py:45
+msgid "Successfully added {kg} from the federation!"
 msgstr ""
 
 #: ckanext/fedorkg/templates/admin.jinja2:5
@@ -38,11 +46,15 @@ msgstr ""
 msgid "Knowledge Graph"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:27
-msgid "Remove knowledge graph from federation"
+#: ckanext/fedorkg/templates/admin.jinja2:28
+msgid "Remove knowledge graph from the federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:45
+#: ckanext/fedorkg/templates/admin.jinja2:42
+msgid "Add knowledge graph to the federation"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin.jinja2:59
 msgid ""
 "Manage the knowledge graphs that are included in the federation of FedORKG. "
 "Only included knowledge graphs can be queried."

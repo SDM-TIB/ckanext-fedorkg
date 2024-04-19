@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.1.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-19 11:32+0200\n"
+"POT-Creation-Date: 2024-04-19 11:56+0200\n"
 "PO-Revision-Date: 2024-04-08 13:44+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -23,13 +23,23 @@ msgstr ""
 msgid "Need to be system administrator to administer."
 msgstr "Nur Systemadministratoren haben hier Zugriff."
 
-#: ckanext/fedorkg/controller.py:32
+#: ckanext/fedorkg/controller.py:34
 msgid "There was an error when deleting {kg} from the federation!"
 msgstr "Beim Entfernen von {kg} aus der Föderation ist ein Fehler aufgetreten."
 
-#: ckanext/fedorkg/controller.py:34
+#: ckanext/fedorkg/controller.py:36
 msgid "Successfully removed {kg} from the federation!"
 msgstr "{kg} wurde erfolgreich von der Föderation entfernt."
+
+#: ckanext/fedorkg/controller.py:43
+#, fuzzy
+msgid "There was an error when adding {kg} from the federation!"
+msgstr "Beim Hinzufügen von {kg} zur Föderation ist ein Fehler aufgetreten."
+
+#: ckanext/fedorkg/controller.py:45
+#, fuzzy
+msgid "Successfully added {kg} from the federation!"
+msgstr "{kg} wurde erfolgreich zur Föderation hinzugefügt."
 
 #: ckanext/fedorkg/templates/admin.jinja2:5
 msgid "Knowledge Graphs in the Federation"
@@ -39,11 +49,15 @@ msgstr "Wissensgraphen in der Föderation"
 msgid "Knowledge Graph"
 msgstr "Wissensgraph"
 
-#: ckanext/fedorkg/templates/admin.jinja2:27
-msgid "Remove knowledge graph from federation"
+#: ckanext/fedorkg/templates/admin.jinja2:28
+msgid "Remove knowledge graph from the federation"
 msgstr "Entferne Wissensgraph aus der Föderation"
 
-#: ckanext/fedorkg/templates/admin.jinja2:45
+#: ckanext/fedorkg/templates/admin.jinja2:42
+msgid "Add knowledge graph to the federation"
+msgstr "Füge Wissensgraph zur Föderation hinzu"
+
+#: ckanext/fedorkg/templates/admin.jinja2:59
 msgid ""
 "Manage the knowledge graphs that are included in the federation of "
 "FedORKG. Only included knowledge graphs can be queried."
