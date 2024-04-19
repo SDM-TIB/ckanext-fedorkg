@@ -1,5 +1,13 @@
 # Changelog
 
+# v0.3.0 - 2024-04-19
+- Add dummy interface for removing knowledge graphs from the federation
+- Add dummy interface for adding knowledge graphs to the federation
+- Update German translation
+- Add hyperlinks for the knowledge graphs of the federation in the admin page
+- Update style of the table in the admin page
+- Fix admin page causing FedORKG being marked as active tab
+
 # v0.2.2 - 2024-04-12
 - Update `DeTrusty` to `v0.15.4`
 - Add footer
