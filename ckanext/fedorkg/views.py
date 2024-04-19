@@ -48,7 +48,7 @@ def sparql():
 
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
 fedorkg.add_url_rule('/sparql', view_func=sparql, methods=['POST'])
-admin_bp.add_url_rule('/fedorkg', view_func=FedORKGController.admin, methods=['GET'])
+admin_bp.add_url_rule('/fedorkg', view_func=FedORKGController.admin, methods=['GET', 'POST'])
 
 
 def get_blueprints():
