@@ -20,7 +20,7 @@
         <tbody>
             {% for kg in kgs %}
                 <tr>
-                    <td>{{ kg }}</td>
+                    <td><a href="{{ kg }}" target="_blank">{{ kg }}</a></td>
                     <td class="center">
                         <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
                             <input type="hidden" name="kg" value="{{ kg }}">
