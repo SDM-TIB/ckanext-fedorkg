@@ -24,13 +24,27 @@
                     <td class="center">
                         <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
                             <input type="hidden" name="kg" value="{{ kg }}">
-                            <button class="btn btn-danger btn-sm" title="{% trans %}Remove knowledge graph from federation{% endtrans %}">
+                            <input type="hidden" name="action" value="0">
+                            <button class="btn btn-danger btn-sm" title="{% trans %}Remove knowledge graph from the federation{% endtrans %}">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
+            <tr>
+                <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+                    <input type="hidden" name="action" value="1">
+                    <td>
+                        <input type="text" name="kg" placeholder="URL of the SPARQL endpoint" size="60" required>
+                    </td>
+                    <td class="center">
+                        <button class="btn btn-success btn-sm" title="{% trans %}Add knowledge graph to the federation{% endtrans %}">
+                                <i class="fa fa-plus"></i>
+                        </button>
+                    </td>
+                </form>
+            </tr>
         </tbody>
     </table>
 {% endblock %}
