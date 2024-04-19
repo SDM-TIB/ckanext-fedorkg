@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.2.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-19 11:56+0200\n"
+"POT-Creation-Date: 2024-04-19 14:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 
 #: ckanext/fedorkg/templates/admin.jinja2:28
 msgid "Remove knowledge graph from the federation"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin.jinja2:39
+msgid "URL of the SPARQL endpoint"
 msgstr ""
 
 #: ckanext/fedorkg/templates/admin.jinja2:42
