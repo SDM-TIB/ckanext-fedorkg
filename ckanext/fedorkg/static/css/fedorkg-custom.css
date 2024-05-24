@@ -4,6 +4,16 @@
   display: none !important;
 }
 
+.tableControls div .switch .label {
+  color: unset !important;
+  font-weight: normal !important;
+  font-size: unset !important;
+}
+
+.tableControls div .switch:after {
+  content: "";
+}
+
 .main .primary {
   min-height: 800px;
   width: 100%;
