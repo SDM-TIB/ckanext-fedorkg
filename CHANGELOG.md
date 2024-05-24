@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.3.1 - 2024-05-24
+- Fix overwrite of some styles
+
 # v0.3.0 - 2024-04-19
 - Add dummy interface for removing knowledge graphs from the federation
 - Add dummy interface for adding knowledge graphs to the federation
