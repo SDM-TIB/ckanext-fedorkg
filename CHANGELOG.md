@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.3.2 - 2024-06-04
+- Add bottom margin to SPARQL interface
+
 # v0.3.1 - 2024-05-24
 - Fix overwrite of some styles
 
