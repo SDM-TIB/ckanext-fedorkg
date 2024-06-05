@@ -1,1 +1,1 @@
-DeTrusty==0.15.4
+DeTrusty==0.15.6
