@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.3.3 - 2024-06-07
+- Update `DeTrusty` to `v0.15.6`
+
 # v0.3.2 - 2024-06-04
 - Add bottom margin to SPARQL interface
 
