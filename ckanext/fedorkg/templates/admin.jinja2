@@ -49,7 +49,7 @@
                 <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
                     <input type="hidden" name="action" value="1">
                     <td>
-                        <input class="input-url" type="text" name="kg" placeholder="{% trans %}URL of the SPARQL endpoint{% endtrans %}" size="60" required>
+                        <input class="form-control" type="text" name="kg" placeholder="{% trans %}URL of the SPARQL endpoint{% endtrans %}" size="60" required>
                     </td>
                     <td class="center">
                         <button class="btn btn-success btn-sm" title="{% trans %}Add knowledge graph to the federation{% endtrans %}">
