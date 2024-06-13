@@ -14,7 +14,7 @@
     <h2>{% trans %}Default Query{% endtrans %}</h2>
     <div>
         <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
-            {{ form.input('ckanext.fedorkg.query.name', label=_('Default Query Name'), value=query_name, placeholder='default query name', is_required=true) }}
+            {{ form.input('ckanext.fedorkg.query.name', label=_('Default Query Name'), value=query_name, placeholder=_('default query name'), is_required=true) }}
             {{ form.textarea('ckanext.fedorkg.query', 'field-ckanext.fedorkg.query', label=_('Default Query'), value=query, is_required=true) }}
             <input type="hidden" name="action" value="default_query">
             <div class="form-actions">
