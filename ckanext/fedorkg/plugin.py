@@ -6,6 +6,7 @@ import ckan.plugins.toolkit as toolkit
 import ckanext.fedorkg.helpers as helpers
 import ckanext.fedorkg.views as views
 from ckan.lib.plugins import DefaultTranslation
+from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY
 
 log = getLogger(__name__)
 
@@ -15,6 +16,7 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
     p.implements(p.IBlueprint, inherit=True)
     p.implements(p.ITemplateHelpers)
     p.implements(p.ITranslation)
+    p.implements(p.IConfigDeclaration)
 
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
@@ -33,3 +35,18 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         return {
             'fedorkg_is_fedorkg_page': helpers.is_fedorkg_page
         }
+
+    def update_config_schema(self, schema):
+        ignore_missing = toolkit.get_validator('ignore_missing')
+
+        schema.update({
+            DEFAULT_QUERY_KEY: [ignore_missing],
+            DEFAULT_QUERY_NAME_KEY: [ignore_missing]
+        })
+
+        return schema
+
+    def declare_config_options(self, declaration, key):
+        declaration.annotate('FedORKG Config Section')
+        declaration.declare(DEFAULT_QUERY_KEY, 'SELECT DISTINCT ?c WHERE { ?s a ?c }').set_description('Default query')
+        declaration.declare(DEFAULT_QUERY_NAME_KEY, 'Covered Concepts').set_description('Name of the default query')

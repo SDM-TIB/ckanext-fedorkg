@@ -2,9 +2,11 @@
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
-
-from ckan.common import request
+from ckan.common import request, current_user, config
 from ckan.plugins import toolkit
+
+DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
+DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
 
 
 class FedORKGController:
@@ -26,27 +28,45 @@ class FedORKGController:
         msg = ''
         error = False
         if request.method == 'POST':
-            kg = request.form.get('kg')
             action = request.form.get('action')
-            if action == '0':
-                # TODO: Try to delete the KG from the federation and set error state accordingly
-                if error:
-                    msg = toolkit._('There was an error when deleting {kg} from the federation!').format(kg=kg)
+            if action == 'default_query':
+                query = request.form.get(DEFAULT_QUERY_KEY, '').strip()
+                query_name = request.form.get(DEFAULT_QUERY_NAME_KEY, '').strip()
+                if query != '' and query_name != '':
+                    # TODO: Check if the query is a valid query
+                    logic.get_action(u'config_option_update')({
+                        u'user': current_user.name
+                    }, {
+                        DEFAULT_QUERY_KEY: query.replace('\r\n', '\n').replace('\n', '\\n'),
+                        DEFAULT_QUERY_NAME_KEY: query_name
+                    })
                 else:
-                    msg = toolkit._('Successfully removed {kg} from the federation!').format(kg=kg)
-                # TODO: Remove after implementing the deletion of a KG from the federation
-                error = True
-                msg = 'This feature is not yet implemented.'
-            elif action == '1':
-                # TODO: Try to add the KG to the federation and set error state accordingly
-                if error:
-                    msg = toolkit._('There was an error when adding {kg} from the federation!').format(kg=kg)
-                else:
-                    msg = toolkit._('Successfully added {kg} from the federation!').format(kg=kg)
-                error = True
-                msg = 'This feature is not yet implemented.'
+                    error = True
+                    msg = toolkit._('The default query and its name are required.')
+            else:
+                kg = request.form.get('kg')
+                if action == '0':
+                    # TODO: Try to delete the KG from the federation and set error state accordingly
+                    if error:
+                        msg = toolkit._('There was an error when deleting {kg} from the federation!').format(kg=kg)
+                    else:
+                        msg = toolkit._('Successfully removed {kg} from the federation!').format(kg=kg)
+                    # TODO: Remove after implementing the deletion of a KG from the federation
+                    error = True
+                    msg = 'This feature is not yet implemented.'
+                elif action == '1':
+                    # TODO: Try to add the KG to the federation and set error state accordingly
+                    if error:
+                        msg = toolkit._('There was an error when adding {kg} from the federation!').format(kg=kg)
+                    else:
+                        msg = toolkit._('Successfully added {kg} from the federation!').format(kg=kg)
+                    error = True
+                    msg = 'This feature is not yet implemented.'
+
         return toolkit.render('admin.jinja2',
                               extra_vars={
+                                  'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
+                                  'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
                                   'kgs': sorted(list(detrusty_config.getEndpoints().keys())),
                                   'msg': msg,
                                   'error': error

@@ -20,3 +20,7 @@ const yasgui = new Yasgui(document.getElementById("yasgui"), {
         args: [{name: "yasqe", value: true}]
     }
 });
+
+let tab = yasgui.getTab();
+tab.setName(default_query_name);
+tab.setQuery(default_query);

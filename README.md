@@ -30,6 +30,11 @@ Then add `fedorkg` to the plugins in your `ckan.ini`.
 > If you have `ckanext-scheming` installed, you have to mention `fedorkg` before the scheming extension in your `ckan.ini`.
 > Otherwise the scheming extension overrides the changes of the FedORKG plugin.
 
+## Configuration Options
+
+- `ckanext.fedorkg.query` the default query shown to the users
+- `ckanext.fedorkg.query.name` a human-readable name for the default query
+
 ## Changelog
 
 If you are interested in what has changed, check out the [changelog](CHANGELOG.md).

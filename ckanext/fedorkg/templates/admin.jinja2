@@ -1,8 +1,9 @@
 {% extends "admin/base.html" %}
 
+{% import 'macros/form.html' as form %}
+
 {% block primary_content_inner %}
     {% asset 'fedorkg/admin' %}
-    <h2>{% trans %}Knowledge Graphs in the Federation{% endtrans %}</h2>
 
     {% if msg %}
         <div class="ui-state {% if error %}ui-state-error{% else %}ui-state-success{% endif %}">
@@ -10,6 +11,19 @@
         </div>
     {% endif %}
 
+    <h2>{% trans %}Default Query{% endtrans %}</h2>
+    <div>
+        <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+            {{ form.input('ckanext.fedorkg.query.name', label=_('Default Query Name'), value=query_name, placeholder='default query name', is_required=true) }}
+            {{ form.textarea('ckanext.fedorkg.query', 'field-ckanext.fedorkg.query', label=_('Default Query'), value=query, is_required=true) }}
+            <input type="hidden" name="action" value="default_query">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" title="{% trans %}Set default query{% endtrans %}">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <h2>{% trans %}Knowledge Graphs in the Federation{% endtrans %}</h2>
     <table class="table table-header table-hover table-bordered">
         <thead>
             <tr>
@@ -56,8 +70,9 @@
         </h2>
         <div class="module-content">
             <p>{% trans %}
-                Manage the knowledge graphs that are included in the federation of FedORKG.
-                Only included knowledge graphs can be queried.
+                Manage this instance of FedORKG. You can set the default query shown to the users and
+                mange the knowledge graphs that are included in the federation of FedORKG.
+                Keep in mind that only included knowledge graphs can be queried.
             {% endtrans %}</p>
         </div>
     </div>
