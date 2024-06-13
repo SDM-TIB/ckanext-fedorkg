@@ -18,7 +18,7 @@
             {{ form.textarea('ckanext.fedorkg.query', 'field-ckanext.fedorkg.query', label=_('Default Query'), value=query, is_required=true) }}
             <input type="hidden" name="action" value="default_query">
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary" title="{% trans %}Set default query{% endtrans %}">Update</button>
+                <button type="submit" class="btn btn-primary" title="{% trans %}Set default query{% endtrans %}">{% trans %}Update{% endtrans %}</button>
             </div>
         </form>
     </div>
