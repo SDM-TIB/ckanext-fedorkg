@@ -69,11 +69,12 @@
             FedORKG
         </h2>
         <div class="module-content">
-            <p>{% trans %}
-                Manage this instance of FedORKG. You can set the default query shown to the users and
-                mange the knowledge graphs that are included in the federation of FedORKG.
-                Keep in mind that only included knowledge graphs can be queried.
-            {% endtrans %}</p>
+            {% trans %}
+                <p>Configuration options to manage the FedORKG instance.</p>
+                <p><strong>Default Query Name:</strong> The title of the tab in the SPARQL query editor holding the default query.</p>
+                <p><strong>Default Query:</strong> The default query shown in the SPARQL query editor.</p>
+                <p><strong>Knowledge Graphs in the Federation:</strong> Mange the knowledge graphs that are included in the federation of FedORKG. Keep in mind that only included knowledge graphs can be queried.</p>
+            {% endtrans %}
         </div>
     </div>
 {% endblock %}
