@@ -2,6 +2,7 @@
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
+from DeTrusty.Decomposer import Decomposer
 from ckan.common import request, current_user, config
 from ckan.plugins import toolkit
 
@@ -30,16 +31,27 @@ class FedORKGController:
         if request.method == 'POST':
             action = request.form.get('action')
             if action == 'default_query':
-                query = request.form.get(DEFAULT_QUERY_KEY, '').strip()
+                query = request.form.get(DEFAULT_QUERY_KEY, '').strip().replace('\r\n', '\n')
                 query_name = request.form.get(DEFAULT_QUERY_NAME_KEY, '').strip()
                 if query != '' and query_name != '':
-                    # TODO: Check if the query is a valid query
-                    logic.get_action(u'config_option_update')({
-                        u'user': current_user.name
-                    }, {
-                        DEFAULT_QUERY_KEY: query.replace('\r\n', '\n').replace('\n', '\\n'),
-                        DEFAULT_QUERY_NAME_KEY: query_name
-                    })
+                    decomposed_query = None
+                    try:
+                        decomposed_query = Decomposer(query, detrusty_config).decompose()
+                    except:
+                        error = True
+                        msg = toolkit._('The query is malformed. Please, check your syntax.')
+
+                    if not error:
+                        if decomposed_query is None:
+                            error = True
+                            msg = toolkit._('The query cannot be answer by the federation of FedORKG.')
+                        else:
+                            logic.get_action(u'config_option_update')({
+                                u'user': current_user.name
+                            }, {
+                                DEFAULT_QUERY_KEY: query.replace('\n', '\\n'),
+                                DEFAULT_QUERY_NAME_KEY: query_name
+                            })
                 else:
                     error = True
                     msg = toolkit._('The default query and its name are required.')
