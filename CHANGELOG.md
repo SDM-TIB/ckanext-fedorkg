@@ -1,5 +1,12 @@
 # Changelog
 
+# v0.4.0 - 2024-06-13
+- Add feature to set the default query via the admin interface
+- Verify default query
+  - Syntactically using the parser of `DeTrusty`
+  - Semantically by decomposing the query with `DeTrusty`
+- Update German translation
+
 # v0.3.3 - 2024-06-07
 - Update `DeTrusty` to `v0.15.6`
 
