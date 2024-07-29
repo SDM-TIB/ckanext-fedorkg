@@ -6,6 +6,10 @@
 FedORKG uses [DeTrusty](https://github.com/SDM-TIB/DeTrusty/) as federated query engine.
 The visual query editor connecting the frontend and DeTrusty is implemented using the JavaScript library [YASGUI](https://github.com/TriplyDB/yasgui).
 
+> [!IMPORTANT]
+> FedORKG's feature to manage the federation queried by DeTrusty from the admin interface is currently under development and not yet functional.
+> Hence, at this time, the endpoints in the federation are solely managed through DeTrusty's source description file.
+
 ## Installation
 
 As usual for CKAN extensions, you can install `ckanext-fedorkg` as follows:
