@@ -37,7 +37,9 @@ Then add `fedorkg` to the plugins in your `ckan.ini`.
 ## Configuration Options
 
 - `ckanext.fedorkg.query` the default query shown to the users
+  - Default: SELECT DISTINCT ?c WHERE { ?s a ?c }
 - `ckanext.fedorkg.query.name` a human-readable name for the default query
+  - Default: Covered Concepts 
 
 ## Changelog
 
