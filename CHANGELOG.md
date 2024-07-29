@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.4.2 - 2024-07-29
+- Update `DeTrusty` to `v0.16.1`
+
 # v0.4.1 - 2024-07-23
 - Update `DeTrusty` to `v0.16.0`
 - Use `toolkit.c.user` instead of `common.current_user.name`
