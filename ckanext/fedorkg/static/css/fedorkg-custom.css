@@ -63,3 +63,8 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.footer img {
+  height: calc(2*var(--bs-body-font-size));
+  margin-top: calc(-0.5*var(--bs-body-font-size));
+}
