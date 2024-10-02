@@ -37,6 +37,20 @@ Then add `fedorkg` to the plugins in your `ckan.ini`.
 > If you have `ckanext-scheming` installed, you have to mention `fedorkg` before the scheming extension in your `ckan.ini`.
 > Otherwise the scheming extension overrides the changes of the FedORKG plugin.
 
+### LLM-based Question Answering
+
+> [!NOTE]
+> This feature is experimental.
+
+Powered by the LLM `o1-mini`, FedORKG is able to answer natural language questions over the federation by relying on the LLM to translate the question into a SPARQL query.
+The file containing the instructions to be included in the prompt has to be located in:
+
+```
+$CKAN_STORAGE_PATH$/fedorkg/prompt.txt
+```
+
+Please, also provide your API token in an environment variable called `OPENAI_API_KEY`.
+
 ## Configuration Options
 
 - `ckanext.fedorkg.query` the default query shown to the users

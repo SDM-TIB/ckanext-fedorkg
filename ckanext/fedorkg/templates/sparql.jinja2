@@ -12,8 +12,33 @@
               default_query_name = "{{ default_query_name }}";
     </script>
     {% asset 'fedorkg/query' %}
-    <div class="mb-4 mt-4 mx-2" id="content-wrap">
+    <div class="mb-6 mt-6 mx-2" id="content-wrap">
+        <details class="mb-3" id="details-llm" open>
+            <summary class="font-bold"><i class="fa fa-flask" aria-hidden="true"></i>&nbsp;BETA: LDMAsk - LLM-based Question Answering</summary>
+            <div class="mb-3 py-2">
+                LDMAsk utilizes the LLM <i>o1-mini</i>. If you do not know what you could ask, here are some examples:
+                <ul>
+                    <li>What are the datasets that contain the keyword "cancer" in the description of the dataset?</li>
+                    <li>What is the frequency of the datasets per data formats?</li>
+                    <li>What is the frequency of the datasets per organizations?</li>
+                    <li>What are the resources that include word "metadata" in the description of the resource?</li>
+                    <li>What are title, year, and research field label of the papers that describe a dataset?</li>
+                    <li>What is the title of the datasets that are described by papers, also provide title, year, and research field label of these papers?</li>
+                </ul>
+
+                <form id="llm" method="post">
+                    <label for="question">Question</label>
+                    <input type="text" id="question" name="question" maxlength="140" size="140" required>
+                    <div style="display: contents">
+                        <div id="loading"></div>
+                        <input type="submit" id="llm_submit" value="{% trans %}Ask{% endtrans %}">
+                    </div>
+                </form>
+            </div>
+        </details>
+
         {% trans %}You can use the SPARQL query editor below to run SPARQL queries over a federation of open research knowledge graphs.{% endtrans %}
+        {% trans %}Alternatively, you can try out the beta version of our LLM-based question answering above. This feature will translate your natural language question into a SPARQL query and execute it for you.{% endtrans %}
         <div class="mt-2" id="yasgui"></div>
     </div>
 
