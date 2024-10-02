@@ -1,5 +1,9 @@
 # Changelog
 
+# v0.5.0 - 2024-10-02
+- Include the logo of `DeTrusty` in the footer
+- Add experimental feature `LLM-based Question Answering`
+
 # v0.4.2 - 2024-07-29
 - Update `DeTrusty` to `v0.16.1`
 
