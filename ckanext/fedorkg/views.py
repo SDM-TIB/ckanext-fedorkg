@@ -57,7 +57,8 @@ def sparql():
             query=query,
             config=detrusty_config,
             join_stars_locally=False,
-            yasqe=yasqe
+            yasqe=yasqe,
+            timeout=config.get('ckanext.fedorkg.timeout')
         )
     )
 

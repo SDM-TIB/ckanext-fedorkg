@@ -55,3 +55,4 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         declaration.annotate('FedORKG Config Section')
         declaration.declare(DEFAULT_QUERY_KEY, 'SELECT DISTINCT ?c WHERE { ?s a ?c }').set_description('Default query')
         declaration.declare(DEFAULT_QUERY_NAME_KEY, 'Covered Concepts').set_description('Name of the default query')
+        declaration.declare('ckanext.fedorkg.timeout', 60).set_description('Query timeout in seconds')

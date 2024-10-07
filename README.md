@@ -57,6 +57,8 @@ Please, also provide your API token in an environment variable called `OPENAI_AP
   - Default: SELECT DISTINCT ?c WHERE { ?s a ?c }
 - `ckanext.fedorkg.query.name` a human-readable name for the default query
   - Default: Covered Concepts 
+- `ckanext.fedorkg.timeout` query execution timeout in seconds
+  - Default: 60
 
 ## Changelog
 
