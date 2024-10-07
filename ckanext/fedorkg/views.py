@@ -33,12 +33,17 @@ prompt = init_prompt()
 
 
 def query_editor():
+    if toolkit.check_ckan_version(min_version='2.10'):
+        margin = '-0.75rem'
+    else:
+        margin = '-15px'
     return toolkit.render('sparql.jinja2',
                           extra_vars={
                               'detrusty_version': detrusty_version,
                               'fedorkg_version': fedorkg_version,
                               'default_query': config.get(DEFAULT_QUERY_KEY, ''),
-                              'default_query_name': config.get(DEFAULT_QUERY_NAME_KEY, '')
+                              'default_query_name': config.get(DEFAULT_QUERY_NAME_KEY, ''),
+                              'margin': margin
                           })
 
 
