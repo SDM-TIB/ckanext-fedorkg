@@ -43,7 +43,8 @@ def query_editor():
                               'fedorkg_version': fedorkg_version,
                               'default_query': config.get(DEFAULT_QUERY_KEY, ''),
                               'default_query_name': config.get(DEFAULT_QUERY_NAME_KEY, ''),
-                              'margin': margin
+                              'margin': margin,
+                              'timeout': config.get('ckanext.fedorkg.timeout')
                           })
 
 

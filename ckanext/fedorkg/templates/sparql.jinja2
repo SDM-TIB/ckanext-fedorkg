@@ -39,6 +39,14 @@
 
         {% trans %}You can use the SPARQL query editor below to run SPARQL queries over a federation of open research knowledge graphs.{% endtrans %}
         {% trans %}Alternatively, you can try out the beta version of our LLM-based question answering above. This feature will translate your natural language question into a SPARQL query and execute it for you.{% endtrans %}
+        <p id="timeout">
+            <b>{% trans %}Query execution timeout:{% endtrans %}</b>
+            {% trans timeout %}
+                {{ timeout }} second
+                {% pluralize %}
+                {{ timeout }} seconds
+            {% endtrans %}
+        </p>
         <div class="mt-2" id="yasgui"></div>
     </div>
 

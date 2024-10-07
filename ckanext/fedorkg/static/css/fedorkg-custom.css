@@ -133,3 +133,8 @@ summary {
     transform: rotate(360deg);
   }
 }
+
+#timeout {
+  margin-top: 20px;
+  margin-bottom: -10px;
+}
