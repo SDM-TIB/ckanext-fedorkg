@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.5.1 - 2024-10-07
+- Fix footer alignment issue in different versions of CKAN
+
 # v0.5.0 - 2024-10-02
 - Include the logo of `DeTrusty` in the footer
 - Add experimental feature `LLM-based Question Answering`
