@@ -1,5 +1,13 @@
 # Changelog
 
+# v0.6.0 - 2024-10-07
+- Update `DeTrusty` to `v0.17.0`
+- Add query timeout feature
+  - Default is 60 seconds
+  - Timeout is shown in the query interface
+  - Timeout can be changed from the admin interface
+- Update German translation
+
 # v0.5.1 - 2024-10-07
 - Fix footer alignment issue in different versions of CKAN
 
