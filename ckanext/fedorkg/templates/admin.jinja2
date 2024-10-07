@@ -23,6 +23,17 @@
         </form>
     </div>
 
+    <h2>{% trans %}Query Execution Timeout{% endtrans %}</h2>
+    <div>
+        <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+            {{ form.input('ckanext.fedorkg.timeout', label=_('Query Timeout (in seconds)'), value=timeout, placeholder=_('query execution timeout'), is_required=true, type='number', attrs={'class': 'form-control', 'min': 0}) }}
+            <input type="hidden" name="action" value="query_timeout">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" title="{% trans %}Set query timeout{% endtrans %}">{% trans %}Update{% endtrans %}</button>
+            </div>
+        </form>
+    </div>
+
     <h2>{% trans %}Knowledge Graphs in the Federation{% endtrans %}</h2>
     <table class="table table-header table-hover table-bordered">
         <thead>
@@ -73,6 +84,7 @@
                 <p>Configuration options to manage the FedORKG instance.</p>
                 <p><strong>Default Query Name:</strong> The title of the tab in the SPARQL query editor holding the default query.</p>
                 <p><strong>Default Query:</strong> The default query shown in the SPARQL query editor.</p>
+                <p><strong>Query Timeout:</strong> The maximum time in seconds a query is executed. Unfinished queries are canceled and return no result.</p>
                 <p><strong>Knowledge Graphs in the Federation:</strong> Mange the knowledge graphs that are included in the federation of FedORKG. Keep in mind that only included knowledge graphs can be queried.</p>
             {% endtrans %}
         </div>

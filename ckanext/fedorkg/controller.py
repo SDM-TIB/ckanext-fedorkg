@@ -8,6 +8,7 @@ from ckan.plugins import toolkit
 
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
 DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
+QUERY_TIMEOUT = 'ckanext.fedorkg.timeout'
 
 
 class FedORKGController:
@@ -55,6 +56,20 @@ class FedORKGController:
                 else:
                     error = True
                     msg = toolkit._('The default query and its name are required.')
+            elif action == 'query_timeout':
+                timeout = request.form.get(QUERY_TIMEOUT, '')
+                try:
+                    timeout = int(timeout)
+                except ValueError:
+                    error = True
+                    msg = toolkit._('The query timeout is specified in full seconds. Please, provide input that can be parsed as an integer.')
+
+                if not error:
+                    logic.get_action(u'config_option_update')({
+                        u'user': toolkit.c.user
+                    }, {
+                        QUERY_TIMEOUT: timeout
+                    })
             else:
                 kg = request.form.get('kg')
                 if action == '0':
@@ -79,6 +94,7 @@ class FedORKGController:
                               extra_vars={
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
+                                  'timeout': config.get(QUERY_TIMEOUT),
                                   'kgs': sorted(list(detrusty_config.getEndpoints().keys())),
                                   'msg': msg,
                                   'error': error

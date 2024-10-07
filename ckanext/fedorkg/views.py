@@ -8,7 +8,7 @@ from DeTrusty.Molecule.MTManager import get_config
 from ckan.common import request, config
 from ckan.plugins import toolkit
 from ckanext.fedorkg import __version__ as fedorkg_version
-from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY
+from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
 from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
@@ -44,7 +44,7 @@ def query_editor():
                               'default_query': config.get(DEFAULT_QUERY_KEY, ''),
                               'default_query_name': config.get(DEFAULT_QUERY_NAME_KEY, ''),
                               'margin': margin,
-                              'timeout': config.get('ckanext.fedorkg.timeout')
+                              'timeout': config.get(QUERY_TIMEOUT)
                           })
 
 
@@ -59,7 +59,7 @@ def sparql():
             config=detrusty_config,
             join_stars_locally=False,
             yasqe=yasqe,
-            timeout=config.get('ckanext.fedorkg.timeout')
+            timeout=config.get(QUERY_TIMEOUT)
         )
     )
 
