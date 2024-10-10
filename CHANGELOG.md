@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.6.1 - 2024-10-10
+- Fix reading query timeout from config
+
 # v0.6.0 - 2024-10-07
 - Update `DeTrusty` to `v0.17.0`
 - Add query timeout feature
