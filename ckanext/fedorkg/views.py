@@ -59,7 +59,7 @@ def sparql():
             config=detrusty_config,
             join_stars_locally=False,
             yasqe=yasqe,
-            timeout=config.get(QUERY_TIMEOUT)
+            timeout=int(config.get(QUERY_TIMEOUT))
         )
     )
 
