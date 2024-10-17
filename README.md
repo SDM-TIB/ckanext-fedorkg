@@ -26,7 +26,7 @@ pip install -r ./ckanext-fedorkg/requirements.txt
 The path for the source description file of DeTrusty is:
 
 ```
-$CKAN_STORAGE_PATH$/fedorkg/rdfmts.json
+$CKAN_STORAGE_PATH$/fedorkg/rdfmts.ttl
 ```
 
 `$CKAN_STORAGE_PATH$` defaults to `/var/lib/ckan`.

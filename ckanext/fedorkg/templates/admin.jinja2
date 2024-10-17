@@ -10,6 +10,10 @@
             {{ msg }}
         </div>
     {% endif %}
+    <div id="admin_spanner" class="spanner">
+        <div id="admin_loader" class="admin_loader"></div>
+        <div><p>{% trans %}Processing request, please be patient.{% endtrans %}</p></div>
+    </div>
 
     <h2>{% trans %}Default Query{% endtrans %}</h2>
     <div>
@@ -46,7 +50,7 @@
                 <tr>
                     <td><a href="{{ kg }}" target="_blank">{{ kg }}</a></td>
                     <td class="center">
-                        <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+                        <form class="admin" method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
                             <input type="hidden" name="kg" value="{{ kg }}">
                             <input type="hidden" name="action" value="0">
                             <button class="btn btn-danger btn-sm" title="{% trans %}Remove knowledge graph from the federation{% endtrans %}">
@@ -57,7 +61,7 @@
                 </tr>
             {% endfor %}
             <tr>
-                <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+                <form class="admin" method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
                     <input type="hidden" name="action" value="1">
                     <td>
                         <input class="form-control" type="text" name="kg" placeholder="{% trans %}URL of the SPARQL endpoint{% endtrans %}" size="60" required>
