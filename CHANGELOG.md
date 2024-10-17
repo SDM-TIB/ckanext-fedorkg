@@ -1,5 +1,10 @@
 # Changelog
 
+# v0.7.0 - 2024-10-17
+- Add federation management to the admin interface
+- Update `DeTrusty` to `v0.18.2`
+- Update German translation
+
 # v0.6.1 - 2024-10-10
 - Fix reading query timeout from config
 
