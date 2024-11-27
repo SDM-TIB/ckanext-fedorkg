@@ -108,6 +108,11 @@ summary {
   margin-bottom: 10px;
 }
 
+#question {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 #loading {
   width: 45px;
   height: 45px;
