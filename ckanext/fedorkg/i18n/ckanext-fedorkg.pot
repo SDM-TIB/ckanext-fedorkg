@@ -7,9 +7,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ckanext-fedorkg 0.7.0\n"
+"Project-Id-Version: ckanext-fedorkg 0.7.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 17:20+0200\n"
+"POT-Creation-Date: 2024-11-27 16:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,6 +137,52 @@ msgid ""
 "<p><strong>Knowledge Graphs in the Federation:</strong> Mange the knowledge "
 "graphs that are included in the federation of FedORKG. Keep in mind that only"
 " included knowledge graphs can be queried.</p>"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:17
+msgid "LLM-based Question Answering"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:19
+msgid ""
+"LDMAsk utilizes the LLM <i>o1-mini</i>. If you do not know what you could "
+"ask, here are some examples:"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:21
+msgid ""
+"What are the datasets that contain the keyword \"cancer\" in the description "
+"of the dataset?"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:22
+msgid "What is the frequency of the datasets per data formats?"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:23
+msgid "What is the frequency of the datasets per organizations?"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:24
+msgid ""
+"What are the resources that include word \"metadata\" in the description of "
+"the resource?"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:25
+msgid ""
+"What are title, year, and research field label of the papers that describe a "
+"dataset?"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:26
+msgid ""
+"What is the title of the datasets that are described by papers, also provide "
+"title, year, and research field label of these papers?"
+msgstr ""
+
+#: ckanext/fedorkg/templates/sparql.jinja2:30
+msgid "Question"
 msgstr ""
 
 #: ckanext/fedorkg/templates/sparql.jinja2:34

@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ckanext-fedorkg 0.7.0\n"
+"Project-Id-Version: ckanext-fedorkg 0.7.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 17:20+0200\n"
+"POT-Creation-Date: 2024-11-27 16:20+0100\n"
 "PO-Revision-Date: 2024-04-08 13:44+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -48,7 +48,9 @@ msgstr ""
 msgid ""
 "There was an error when deleting {kg} from the federation! If you are an "
 "admin, check the logs for more details on what happened."
-msgstr "Beim Entfernen von {kg} aus der Föderation ist ein Fehler aufgetreten. Falls Sie ein Administrator sind, prüfen sie bitte die Logs."
+msgstr ""
+"Beim Entfernen von {kg} aus der Föderation ist ein Fehler aufgetreten. "
+"Falls Sie ein Administrator sind, prüfen sie bitte die Logs."
 
 #: ckanext/fedorkg/controller.py:121
 msgid "Successfully removed {kg} from the federation!"
@@ -56,13 +58,17 @@ msgstr "{kg} wurde erfolgreich von der Föderation entfernt."
 
 #: ckanext/fedorkg/controller.py:148
 msgid "{kg} is not accessible and, hence, cannot be added to the federation."
-msgstr "{kg} ist nicht erreichbar und wurde daher nicht zur Föderation hinzugefügt."
+msgstr ""
+"{kg} ist nicht erreichbar und wurde daher nicht zur Föderation "
+"hinzugefügt."
 
 #: ckanext/fedorkg/controller.py:150
 msgid ""
 "There was an error when adding {kg} to the federation! If you are an "
 "admin, check the logs for more details on what happened."
-msgstr "Beim Hinzufügen von {kg} zur Föderation ist ein Fehler aufgetreten. Falls Sie ein Administrator sind, prüfen sie bitte die Logs."
+msgstr ""
+"Beim Hinzufügen von {kg} zur Föderation ist ein Fehler aufgetreten. Falls"
+" Sie ein Administrator sind, prüfen sie bitte die Logs."
 
 #: ckanext/fedorkg/controller.py:152
 #, fuzzy
@@ -156,6 +162,52 @@ msgstr ""
 "Föderation von FedORKG integriert sind. Beachten Sie, dass nur enthaltene"
 " Wissensgraphen angefragt werden können.</p>"
 
+#: ckanext/fedorkg/templates/sparql.jinja2:17
+msgid "LLM-based Question Answering"
+msgstr "LLM-basierte Fragebeantwortung"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:19
+msgid ""
+"LDMAsk utilizes the LLM <i>o1-mini</i>. If you do not know what you could"
+" ask, here are some examples:"
+msgstr "LDMAsk verwendet das LLM <i>o1-mini</i>. Wenn Sie nicht wissen was die fragen könnten, hier sind ein paar Beispiele:"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:21
+msgid ""
+"What are the datasets that contain the keyword \"cancer\" in the "
+"description of the dataset?"
+msgstr "Welche Datensätze enthalten das Schlagwort \"cancer\" in der Datensatzbeschreibung?"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:22
+msgid "What is the frequency of the datasets per data formats?"
+msgstr "Wie viele Datensätze gibt es pro Datenformat?"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:23
+msgid "What is the frequency of the datasets per organizations?"
+msgstr "Wie viele Datensätze hat jede Organisation?"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:24
+msgid ""
+"What are the resources that include word \"metadata\" in the description "
+"of the resource?"
+msgstr "Welche Ressourcen enthalten das Wort \"metadata\" in der Beschreibung der Ressource?"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:25
+msgid ""
+"What are title, year, and research field label of the papers that "
+"describe a dataset?"
+msgstr "Wie lauten Titel, Jahr und Forschungsfeld-Label der Arbeiten, die einen Datensatz beschreiben?"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:26
+msgid ""
+"What is the title of the datasets that are described by papers, also "
+"provide title, year, and research field label of these papers?"
+msgstr "Wie lautet der Titel der Datensätze, die in den Arbeiten beschrieben werden, einschließlich Titel, Jahr und Forschungsfeld-Label dieser Arbeiten?"
+
+#: ckanext/fedorkg/templates/sparql.jinja2:30
+msgid "Question"
+msgstr "Frage"
+
 #: ckanext/fedorkg/templates/sparql.jinja2:34
 msgid "Ask"
 msgstr "Frag"
@@ -188,3 +240,4 @@ msgid "%(timeout)s second"
 msgid_plural "%(timeout)s seconds"
 msgstr[0] "%(timeout)s Sekunde"
 msgstr[1] "%(timeout)s Sekunden"
+

@@ -14,20 +14,20 @@
     {% asset 'fedorkg/query' %}
     <div class="mb-6 mt-6 mx-2" id="content-wrap">
         <details class="mb-3" id="details-llm" open>
-            <summary class="font-bold"><i class="fa fa-flask" aria-hidden="true"></i>&nbsp;BETA: LDMAsk - LLM-based Question Answering</summary>
+            <summary class="font-bold"><i class="fa fa-flask" aria-hidden="true"></i>&nbsp;BETA: LDMAsk - {% trans %}LLM-based Question Answering{% endtrans %}</summary>
             <div class="mb-3 py-2">
-                LDMAsk utilizes the LLM <i>o1-mini</i>. If you do not know what you could ask, here are some examples:
+                {% trans %}LDMAsk utilizes the LLM <i>o1-mini</i>. If you do not know what you could ask, here are some examples:{% endtrans %}
                 <ul>
-                    <li>What are the datasets that contain the keyword "cancer" in the description of the dataset?</li>
-                    <li>What is the frequency of the datasets per data formats?</li>
-                    <li>What is the frequency of the datasets per organizations?</li>
-                    <li>What are the resources that include word "metadata" in the description of the resource?</li>
-                    <li>What are title, year, and research field label of the papers that describe a dataset?</li>
-                    <li>What is the title of the datasets that are described by papers, also provide title, year, and research field label of these papers?</li>
+                    <li>{% trans %}What are the datasets that contain the keyword "cancer" in the description of the dataset?{% endtrans %}</li>
+                    <li>{% trans %}What is the frequency of the datasets per data formats?{% endtrans %}</li>
+                    <li>{% trans %}What is the frequency of the datasets per organizations?{% endtrans %}</li>
+                    <li>{% trans %}What are the resources that include word "metadata" in the description of the resource?{% endtrans %}</li>
+                    <li>{% trans %}What are title, year, and research field label of the papers that describe a dataset?{% endtrans %}</li>
+                    <li>{% trans %}What is the title of the datasets that are described by papers, also provide title, year, and research field label of these papers?{% endtrans %}</li>
                 </ul>
 
                 <form id="llm" method="post">
-                    <label for="question">Question</label>
+                    <label for="question">{% trans %}Question{% endtrans %}</label>
                     <input type="text" id="question" name="question" maxlength="136" required>
                     <div style="display: contents">
                         <div id="loading"></div>
