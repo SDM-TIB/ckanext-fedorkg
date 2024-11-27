@@ -144,3 +144,19 @@ summary {
   margin-top: 20px;
   margin-bottom: -10px;
 }
+
+#details-llm summary {
+  cursor: pointer;
+  list-style: none; /* remove default marker */
+}
+
+#details-llm summary::before {
+  content: '\25BA'; /* unicode for right-pointing triangle */
+  display: inline-block;
+  margin-right: 10px; /* space between marker and text */
+  transition: transform 0.5s ease;
+}
+
+#details-llm[open] summary::before {
+   transform: rotate(90deg); /* rotate the triangle when opening */
+}
