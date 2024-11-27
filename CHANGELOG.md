@@ -1,5 +1,13 @@
 # Changelog
 
+# v0.7.1 - 2024-11-27
+- Add bottom margin for the 'ask' button
+- Fix width of natural language question input field
+- Fix the size of the DeTrusty icon in the footer
+- Fix the marker for the LLM feature drop down for CKAN 2.9
+- Update `DeTrusty` to `v0.18.3`
+- Update German translation
+
 # v0.7.0 - 2024-10-17
 - Add federation management to the admin interface
 - Update `DeTrusty` to `v0.18.2`
