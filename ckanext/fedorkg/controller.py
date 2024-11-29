@@ -155,7 +155,7 @@ class FedORKGController:
                     'msg': msg
                 })
 
-        return toolkit.render('admin.jinja2',
+        return toolkit.render('admin_fedorkg.jinja2',
                               extra_vars={
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
