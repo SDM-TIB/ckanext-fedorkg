@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.7.2 - 2024-11-29
+- Rename admin interface template to avoid conflicts with other extensions
+
 # v0.7.1 - 2024-11-27
 - Add bottom margin for the 'ask' button
 - Fix width of natural language question input field
