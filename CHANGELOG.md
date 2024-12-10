@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.7.3 - 2024-12-10
+- Update `DeTrusty` to `v0.19.0`
+
 # v0.7.2 - 2024-11-29
 - Rename admin interface template to avoid conflicts with other extensions
 
