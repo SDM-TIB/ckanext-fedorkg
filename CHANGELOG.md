@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.8.0 - 2025-01-10
+- Add feature triggering the translation of a question by clicking it
+
 # v0.7.3 - 2024-12-10
 - Update `DeTrusty` to `v0.19.0`
 
