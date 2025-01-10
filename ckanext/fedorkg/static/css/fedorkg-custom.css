@@ -160,3 +160,7 @@ summary {
 #details-llm[open] summary::before {
    transform: rotate(90deg); /* rotate the triangle when opening */
 }
+
+.question {
+  cursor: pointer;
+}

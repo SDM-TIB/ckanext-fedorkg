@@ -51,3 +51,18 @@ llm_form.onsubmit = async function (event) {
     tab.setQuery(query);
     tab.query();
 };
+
+const question_elem = document.getElementById("question"),
+      submit_btn = document.getElementById("llm_submit"),
+      questions = document.querySelectorAll('.question');
+
+function handleClick(question) {
+    question_elem.value = question;
+    submit_btn.click();
+}
+
+questions.forEach(function(element) {
+   element.addEventListener('click', function() {
+       handleClick(element.textContent || element.innerText);
+   });
+});
