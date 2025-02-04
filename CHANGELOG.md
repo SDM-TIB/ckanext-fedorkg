@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.8.1 - 2025-02-05
+- Update `DeTrusty` to `v0.19.1` to fix incompatibility issue with `python-dateutil`
+
 # v0.8.0 - 2025-01-10
 - Add feature triggering the translation of a question by clicking it
 
