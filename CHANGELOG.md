@@ -1,5 +1,8 @@
 # Changelog
 
+# v0.8.2 - 2025-04-09
+- Fix URL for connecting to LLM
+
 # v0.8.1 - 2025-02-05
 - Update `DeTrusty` to `v0.19.1` to fix incompatibility issue with `python-dateutil`
 
