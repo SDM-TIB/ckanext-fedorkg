@@ -42,7 +42,7 @@ llm_form.onsubmit = async function (event) {
 
     let data = new FormData();
     data.append("question", document.getElementById("question").value)
-    let query = await fetch("/fedorkg/llm", {method: "POST", body: data})
+    let query = await fetch("llm", {method: "POST", body: data})
         .then(res => { hideLoading(); return res.text(); })
         .catch(err => console.error(err));
 
