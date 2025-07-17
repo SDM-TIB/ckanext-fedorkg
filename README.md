@@ -64,6 +64,11 @@ If you are interested in what has changed, check out the [changelog](CHANGELOG.m
 
 `ckanext-fedorkg` is licensed under GPL-3.0, see the [license file](LICENSE).
 
+## Development
+
+The translations can be managed with the `Makefile`.
+However, CKAN and its dependencies must be installed in the same environment for the commands to work.
+
 ## Publications
 
 1. Philipp D. Rohde, Enrique Iglesias, Maria-Esther Vidal: _FedORKG: Accessing Federations of Open Research Knowledge Graphs_. In: 1. NFDI4Energy Conference. DOI [10.5281/zenodo.10591442](https://doi.org/10.5281/zenodo.10591442)
