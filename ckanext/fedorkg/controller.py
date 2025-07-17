@@ -54,10 +54,7 @@ class FedORKGController:
         error = False
         if request.method == 'POST':
             action = request.form.get('action', None)
-            if action is None:
-                error = asbool(request.form.get('error'))
-                msg = request.form.get('msg')
-            elif action == 'default_query':
+            if action == 'default_query':
                 query = request.form.get(DEFAULT_QUERY_KEY, '').strip().replace('\r\n', '\n')
                 query_name = request.form.get(DEFAULT_QUERY_NAME_KEY, '').strip()
                 if query != '' and query_name != '':
@@ -66,12 +63,11 @@ class FedORKGController:
                         decomposed_query = Decomposer(query, DETRUSTY_CONFIG).decompose()
                     except:
                         error = True
-                        msg = toolkit._('The query is malformed. Please, check your syntax.')
+                        toolkit.h.flash_error(toolkit._('The query is malformed. Please, check your syntax.'))
 
                     if not error:
                         if decomposed_query is None:
-                            error = True
-                            msg = toolkit._('The query cannot be answer by the federation of FedORKG.')
+                            toolkit.h.flash_error(toolkit._('The query cannot be answer by the federation of FedORKG.'))
                         else:
                             logic.get_action(u'config_option_update')({
                                 u'user': toolkit.c.user
@@ -79,17 +75,16 @@ class FedORKGController:
                                 DEFAULT_QUERY_KEY: query.replace('\n', '\\n'),
                                 DEFAULT_QUERY_NAME_KEY: query_name
                             })
-                            msg = toolkit._('The default query has been updated successfully.')
+                            toolkit.h.flash_success(toolkit._('The default query has been updated successfully.'))
                 else:
-                    error = True
-                    msg = toolkit._('The default query and its name are required.')
+                    toolkit.h.flash_error(toolkit._('The default query and its name are required.'))
             elif action == 'query_timeout':
                 timeout = request.form.get(QUERY_TIMEOUT, '')
                 try:
                     timeout = int(timeout)
                 except ValueError:
                     error = True
-                    msg = toolkit._('The query timeout is specified in full seconds. Please, provide input that can be parsed as an integer.')
+                    toolkit.h.flash_error(toolkit._('The query timeout is specified in full seconds. Please, provide input that can be parsed as an integer.'))
 
                 if not error:
                     logic.get_action(u'config_option_update')({
@@ -97,8 +92,8 @@ class FedORKGController:
                     }, {
                         QUERY_TIMEOUT: timeout
                     })
-                    msg = toolkit._('New query timeout set successfully.')
-            else:
+                    toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
+            elif action == '0' or action == '1':
                 kg = request.form.get('kg')
                 if action == '0':
                     try:
@@ -118,9 +113,9 @@ class FedORKGController:
                         error = True
                         logger.exception(e)
                     if error:
-                        msg = toolkit._('There was an error when deleting {kg} from the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg)
+                        toolkit.h.flash_error(toolkit._('There was an error when deleting {kg} from the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg))
                     else:
-                        msg = toolkit._('Successfully removed {kg} from the federation!').format(kg=kg)
+                        toolkit.h.flash_success(toolkit._('Successfully removed {kg} from the federation!').format(kg=kg))
                 elif action == '1':
                     endpoint = Endpoint(kg)
                     accessible = endpoint in _accessible_endpoints([endpoint])
@@ -147,11 +142,11 @@ class FedORKGController:
 
                     if error:
                         if not accessible:
-                            msg = toolkit._('{kg} is not accessible and, hence, cannot be added to the federation.').format(kg=kg)
+                            toolkit.h.flash_error(toolkit._('{kg} is not accessible and, hence, cannot be added to the federation.').format(kg=kg))
                         else:
-                            msg = toolkit._('There was an error when adding {kg} to the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg)
+                            toolkit.h.flash_error(toolkit._('There was an error when adding {kg} to the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg))
                     else:
-                        msg = toolkit._('Successfully added {kg} to the federation!').format(kg=kg)
+                        toolkit.h.flash_success(toolkit._('Successfully added {kg} to the federation!').format(kg=kg))
                 return jsonify({
                     'error': error,
                     'msg': msg
@@ -162,7 +157,5 @@ class FedORKGController:
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
                                   'timeout': config.get(QUERY_TIMEOUT),
-                                  'kgs': sorted(list(DETRUSTY_CONFIG.getEndpoints().keys())),
-                                  'msg': msg,
-                                  'error': error
+                                  'kgs': sorted(list(DETRUSTY_CONFIG.getEndpoints().keys()))
                               })

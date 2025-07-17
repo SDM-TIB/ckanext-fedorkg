@@ -5,11 +5,6 @@
 {% block primary_content_inner %}
     {% asset 'fedorkg/admin' %}
 
-    {% if msg %}
-        <div class="ui-state {% if error %}ui-state-error{% else %}ui-state-success{% endif %}">
-            {{ msg }}
-        </div>
-    {% endif %}
     <div id="admin_spanner" class="spanner">
         <div id="admin_loader" class="admin_loader"></div>
         <div><p>{% trans %}Processing request, please be patient.{% endtrans %}</p></div>

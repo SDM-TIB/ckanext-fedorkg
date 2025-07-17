@@ -15,7 +15,7 @@ forms.forEach(function(form) {
             body: formData
         };
 
-        let response = await fetch(url, fetchOptions)
+        await fetch(url, fetchOptions)
             .then(response => {
                 return response.json();
             })
@@ -25,18 +25,6 @@ forms.forEach(function(form) {
         reload.action = url;
         reload.method = "POST";
         reload.style.visibility = "hidden";
-
-        const inputError = document.createElement("input");
-        inputError.type = "hidden";
-        inputError.name = "error";
-        inputError.value = response["error"];
-        reload.appendChild(inputError);
-
-        const inputMsg = document.createElement("input");
-        inputMsg.type = "hidden";
-        inputMsg.name = "msg";
-        inputMsg.value = response["msg"];
-        reload.appendChild(inputMsg);
 
         document.body.appendChild(reload);
         reload.submit();
