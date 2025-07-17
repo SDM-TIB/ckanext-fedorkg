@@ -1,14 +1,17 @@
 
 import os
+from typing import Any, cast
 
 import requests
 from DeTrusty import __version__ as detrusty_version
 from DeTrusty import run_query
 from ckan.common import request, config
 from ckan.plugins import toolkit
+from ckan.types import Context
+from ckan.views.user import _extra_template_variables
+from ckanext.fedorkg import FEDORKG_PATH
 from ckanext.fedorkg import __version__ as fedorkg_version
 from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT, DETRUSTY_CONFIG
-from ckanext.fedorkg import FEDORKG_PATH
 from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
@@ -91,6 +94,18 @@ def llm():
             raise RuntimeError(f"An error occurred: {err}")
 
 
+def news():
+    context = cast(Context, {
+        u'for_view': True,
+        u'user': toolkit.current_user.name,
+        u'auth_user_obj': toolkit.current_user
+    })
+    data_dict: dict[str, Any] = {
+        u'user_obj': toolkit.current_user,
+        u'include_datasets': True}
+    extra_vars = _extra_template_variables(context, data_dict)
+    return toolkit.render('user/dashboard_fedorkg.html', extra_vars)
+
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
 fedorkg.add_url_rule('/sparql', view_func=sparql, methods=['POST'])
 fedorkg.add_url_rule('/llm', view_func=llm, methods=['POST'])
@@ -98,4 +113,6 @@ admin_bp.add_url_rule('/fedorkg', view_func=FedORKGController.admin, methods=['G
 
 
 def get_blueprints():
-    return [fedorkg, admin_bp]
+    from ckan.views.dashboard import dashboard
+    dashboard.add_url_rule('/fedorkg', view_func=news, methods=['GET', 'POST'])
+    return [fedorkg, admin_bp, dashboard]
