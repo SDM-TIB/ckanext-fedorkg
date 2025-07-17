@@ -1,15 +1,15 @@
 # Translations template for ckanext-fedorkg.
-# Copyright (C) 2024 ORGANIZATION
+# Copyright (C) 2025 ORGANIZATION
 # This file is distributed under the same license as the ckanext-fedorkg
 # project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ckanext-fedorkg 0.7.1\n"
+"Project-Id-Version: ckanext-fedorkg 0.8.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-27 16:20+0100\n"
+"POT-Creation-Date: 2025-07-17 15:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,111 +22,119 @@ msgstr ""
 msgid "Need to be system administrator to administer."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:69
+#: ckanext/fedorkg/controller.py:66
 msgid "The query is malformed. Please, check your syntax."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:74
+#: ckanext/fedorkg/controller.py:70
 msgid "The query cannot be answer by the federation of FedORKG."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:84
+#: ckanext/fedorkg/controller.py:78
+msgid "The default query has been updated successfully."
+msgstr ""
+
+#: ckanext/fedorkg/controller.py:80
 msgid "The default query and its name are required."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:91
+#: ckanext/fedorkg/controller.py:87
 msgid ""
 "The query timeout is specified in full seconds. Please, provide input that "
 "can be parsed as an integer."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:119
+#: ckanext/fedorkg/controller.py:95
+msgid "New query timeout set successfully."
+msgstr ""
+
+#: ckanext/fedorkg/controller.py:116
 msgid ""
 "There was an error when deleting {kg} from the federation! If you are an "
 "admin, check the logs for more details on what happened."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:121
+#: ckanext/fedorkg/controller.py:118
 msgid "Successfully removed {kg} from the federation!"
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:148
+#: ckanext/fedorkg/controller.py:145
 msgid "{kg} is not accessible and, hence, cannot be added to the federation."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:150
+#: ckanext/fedorkg/controller.py:147
 msgid ""
 "There was an error when adding {kg} to the federation! If you are an admin, "
 "check the logs for more details on what happened."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:152
+#: ckanext/fedorkg/controller.py:149
 msgid "Successfully added {kg} to the federation!"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:15
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:10
 msgid "Processing request, please be patient."
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:18
-#: ckanext/fedorkg/templates/admin.jinja2:22
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:13
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:17
 msgid "Default Query"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:21
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:16
 msgid "Default Query Name"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:21
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:16
 msgid "default query name"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:25
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:20
 msgid "Set default query"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:25
-#: ckanext/fedorkg/templates/admin.jinja2:36
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:20
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:32
 msgid "Update"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:30
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:26
 msgid "Query Execution Timeout"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:33
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:29
 msgid "Query Timeout (in seconds)"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:33
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:29
 msgid "query execution timeout"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:36
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:32
 msgid "Set query timeout"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:41
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:38
 msgid "Knowledge Graphs in the Federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:45
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:42
 msgid "Knowledge Graph"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:56
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:53
 msgid "Remove knowledge graph from the federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:67
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:64
 msgid "URL of the SPARQL endpoint"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:70
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:67
 msgid "Add knowledge graph to the federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin.jinja2:87
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:84
 msgid ""
 "<p>Configuration options to manage the FedORKG instance.</p> "
 "<p><strong>Default Query Name:</strong> The title of the tab in the SPARQL "
@@ -212,4 +220,8 @@ msgid "%(timeout)s second"
 msgid_plural "%(timeout)s seconds"
 msgstr[0] ""
 msgstr[1] ""
+
+#: ckanext/fedorkg/templates/user/dashboard.html:5
+msgid "FedORKG News"
+msgstr ""
 
