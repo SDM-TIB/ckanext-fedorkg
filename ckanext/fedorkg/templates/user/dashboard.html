@@ -2,5 +2,5 @@
 
 {% block dashboard_nav_links %}
     {{ super() }}
-    {{ h.build_nav_icon('dashboard.news', _('FedORKG News'), icon='magnifying-glass') }}
+    {{ h.build_nav_icon('dashboard.news', _('FedORKG News'), icon=h.fedorkg_icon()) }}
 {% endblock %}

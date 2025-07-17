@@ -23,11 +23,7 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('static', 'fedorkg')
-        if toolkit.check_ckan_version(min_version='2.10'):
-            icon = 'magnifying-glass'
-        else:
-            icon = 'search'
-        toolkit.add_ckan_admin_tab(config_, 'fedorkg_admin.admin', 'FedORKG', icon=icon)
+        toolkit.add_ckan_admin_tab(config_, 'fedorkg_admin.admin', 'FedORKG', icon=helpers.icon())
         if config_.get(DEFAULT_QUERY_NAME_KEY, None) is None:
             config_[DEFAULT_QUERY_NAME_KEY] = 'Covered Concepts'
         if config_.get(DEFAULT_QUERY_KEY, None) is None:
@@ -40,7 +36,8 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
 
     def get_helpers(self):
         return {
-            'fedorkg_is_fedorkg_page': helpers.is_fedorkg_page
+            'fedorkg_is_fedorkg_page': helpers.is_fedorkg_page,
+            'fedorkg_icon': helpers.icon
         }
 
     def update_config_schema(self, schema):
