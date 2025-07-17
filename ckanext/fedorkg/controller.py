@@ -79,6 +79,7 @@ class FedORKGController:
                                 DEFAULT_QUERY_KEY: query.replace('\n', '\\n'),
                                 DEFAULT_QUERY_NAME_KEY: query_name
                             })
+                            msg = toolkit._('The default query has been updated successfully.')
                 else:
                     error = True
                     msg = toolkit._('The default query and its name are required.')
@@ -96,6 +97,7 @@ class FedORKGController:
                     }, {
                         QUERY_TIMEOUT: timeout
                     })
+                    msg = toolkit._('New query timeout set successfully.')
             else:
                 kg = request.form.get('kg')
                 if action == '0':
