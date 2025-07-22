@@ -49,6 +49,12 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
                 else:
                     raise e
 
+        @fedorkg.command()
+        def version():
+            from DeTrusty import __version__ as detrusty_version
+            from ckanext.fedorkg import __version__ as fedorkg_version
+            click.echo('FedORKG v{fedorkg_version} is powered by DeTrusty v{detrusty_version}'.format(fedorkg_version=fedorkg_version, detrusty_version=detrusty_version))
+
         return [fedorkg]
 
     def __init__(self, *args, **kwargs):
