@@ -9,9 +9,9 @@ from ckan.common import request, config
 from ckan.plugins import toolkit
 from ckan.types import Context
 from ckan.views.user import _extra_template_variables
-from ckanext.fedorkg import FEDORKG_PATH
 from ckanext.fedorkg import __version__ as fedorkg_version
 from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT, DETRUSTY_CONFIG
+from ckanext.fedorkg.metadata import FEDORKG_PATH
 from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')

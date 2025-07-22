@@ -1,10 +1,4 @@
-import os
-
 from .__version__ import __version__
-
-STORAGE_PATH = os.environ.get('CKAN_STORAGE_PATH', '/var/lib/ckan')
-FEDORKG_PATH = os.path.join(STORAGE_PATH, 'fedorkg')
-SEMSD_PATH = os.path.join(FEDORKG_PATH, 'rdfmts.ttl')
 
 QUERY_DELETE_PROPERTY_RANGE = '''
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
