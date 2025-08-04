@@ -4,21 +4,14 @@ import os
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
-import pyoxigraph
 from DeTrusty import get_config
 from DeTrusty.Decomposer import Decomposer
-from DeTrusty.Molecule import SEMSD
-from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints, get_rdfmts_from_endpoint
+from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config, asbool
 from ckan.plugins import toolkit
-from pyoxigraph import Store, RdfFormat
-from rdflib import Graph
 from flask import jsonify
 
 from ckanext.fedorkg.metadata import FEDORKG_PATH, SEMSD_PATH
-
-from . import QUERY_DELETE_PROPERTY_RANGE, QUERY_DELETE_SOURCE_FROM_PROPERTY, QUERY_DELETE_PROPERTY_NO_SOURCE, \
-     QUERY_DELETE_SOURCE_FROM_CLASS, QUERY_DELETE_CLASS_NO_SOURCE, QUERY_DELETE_SOURCE
 
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
 DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
@@ -99,18 +92,8 @@ class FedORKGController:
                 kg = request.form.get('kg')
                 if action == '0':
                     try:
-                        DETRUSTY_CONFIG.ttl.update(QUERY_DELETE_PROPERTY_RANGE.format(url=kg))
-                        DETRUSTY_CONFIG.ttl.update(QUERY_DELETE_SOURCE_FROM_PROPERTY.format(url=kg))
-                        DETRUSTY_CONFIG.ttl.update(QUERY_DELETE_PROPERTY_NO_SOURCE)
-                        DETRUSTY_CONFIG.ttl.update(QUERY_DELETE_SOURCE_FROM_CLASS.format(url=kg))
-                        DETRUSTY_CONFIG.ttl.update(QUERY_DELETE_CLASS_NO_SOURCE)
-                        DETRUSTY_CONFIG.ttl.update(QUERY_DELETE_SOURCE.format(url=kg))
-                        DETRUSTY_CONFIG.ttl.optimize()
-                        ttl_new = pyoxigraph.serialize(DETRUSTY_CONFIG.ttl, format=RdfFormat.TURTLE)
-                        sem_source_desc = Graph()
-                        sem_source_desc.bind('semsd', SEMSD)
-                        sem_source_desc.parse(ttl_new)
-                        sem_source_desc.serialize(SEMSD_PATH, format='turtle')
+                        DETRUSTY_CONFIG.delete_endpoint(kg)
+                        DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
                     except Exception as e:
                         error = True
                         logger.exception(e)
@@ -123,19 +106,8 @@ class FedORKGController:
                     accessible = endpoint in _accessible_endpoints([endpoint])
                     if accessible:
                         try:
-                            source_desc = get_rdfmts_from_endpoint(endpoint)
-                            sem_source_desc = Graph()
-                            sem_source_desc.bind('semsd', SEMSD)
-                            sem_source_desc.parse(SEMSD_PATH, format='turtle')
-                            [sem_source_desc.add(triple) for triple in endpoint.triples]
-                            [sem_source_desc.add(triple) for triple in source_desc]
-                            sem_source_desc.serialize(SEMSD_PATH, format='turtle')
-                            DETRUSTY_CONFIG.ttl = Store()
-                            with open(SEMSD_PATH, 'r', encoding='utf8') as semsd:
-                                ttl = semsd.read()
-                            DETRUSTY_CONFIG.ttl.load(ttl, RdfFormat.TURTLE)
-                            DETRUSTY_CONFIG.ttl.optimize()
-                            DETRUSTY_CONFIG.endpoints = DETRUSTY_CONFIG.getEndpoints()
+                            DETRUSTY_CONFIG.add_endpoint(kg)
+                            DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
                         except Exception as e:
                             error = True
                             logger.exception(e)
