@@ -11,6 +11,7 @@ import ckanext.fedorkg.views as views
 import click
 from ckan.lib.plugins import DefaultTranslation
 from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
+from ckanext.fedorkg.model import news as news_model
 
 log = getLogger(__name__)
 
@@ -48,6 +49,14 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
                         raise OSError('Port 9000 bound by a different or unhealthy service.')
                 else:
                     raise e
+
+        @fedorkg.command(name='initdb')
+        def init_db():
+            if news_model.news_table.exists():
+                click.secho("FedORKG's news table already exists.", fg='green')
+            else:
+                news_model.news_table.create()
+                click.secho("FedORKG's news table created.", fg='green')
 
         @fedorkg.command()
         def version():
