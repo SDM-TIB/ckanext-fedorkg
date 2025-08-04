@@ -1,5 +1,6 @@
 import logging
 import os
+from uuid import uuid4
 
 import ckan.lib.base as base
 import ckan.logic as logic
@@ -9,9 +10,9 @@ from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config
 from ckan.plugins import toolkit
-from flask import jsonify
-
 from ckanext.fedorkg.metadata import FEDORKG_PATH, SEMSD_PATH
+from ckanext.fedorkg.model.crud import NewsQuery
+from flask import jsonify
 
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
 DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
@@ -91,36 +92,11 @@ class FedORKGController:
             elif action == '0' or action == '1':
                 kg = request.form.get('kg')
                 if action == '0':
-                    try:
-                        DETRUSTY_CONFIG.delete_endpoint(kg)
-                        DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
-                    except Exception as e:
-                        error = True
-                        logger.exception(e)
-                    if error:
-                        toolkit.h.flash_error(toolkit._('There was an error when deleting {kg} from the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg))
-                    else:
-                        toolkit.h.flash_success(toolkit._('Successfully removed {kg} from the federation!').format(kg=kg))
+                    toolkit.enqueue_job(delete_kg_from_federation, [kg], title=f'Deleting {kg} from federation')
+                    toolkit.h.flash_notice('Your request has been added to the job queue. Check back later for results.')
                 elif action == '1':
-                    endpoint = Endpoint(kg)
-                    accessible = endpoint in _accessible_endpoints([endpoint])
-                    if accessible:
-                        try:
-                            DETRUSTY_CONFIG.add_endpoint(kg)
-                            DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
-                        except Exception as e:
-                            error = True
-                            logger.exception(e)
-                    else:
-                        error = True
-
-                    if error:
-                        if not accessible:
-                            toolkit.h.flash_error(toolkit._('{kg} is not accessible and, hence, cannot be added to the federation.').format(kg=kg))
-                        else:
-                            toolkit.h.flash_error(toolkit._('There was an error when adding {kg} to the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg))
-                    else:
-                        toolkit.h.flash_success(toolkit._('Successfully added {kg} to the federation!').format(kg=kg))
+                    toolkit.enqueue_job(add_kg_to_federation, [kg], title=f'Adding {kg} to federation')
+                    toolkit.h.flash_notice('Your request has been added to the job queue. Check back later for results.')
                 return jsonify({
                     'error': error,
                     'msg': msg
@@ -133,3 +109,46 @@ class FedORKGController:
                                   'timeout': config.get(QUERY_TIMEOUT),
                                   'kgs': sorted(list(DETRUSTY_CONFIG.getEndpoints().keys()))
                               })
+
+
+def add_kg_to_federation(kg):
+    error = False
+    endpoint = Endpoint(kg)
+    accessible = endpoint in _accessible_endpoints([endpoint])
+    if accessible:
+        try:
+            DETRUSTY_CONFIG.add_endpoint(kg)
+            DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
+        except Exception as e:
+            error = True
+            logger.exception(e)
+    else:
+        error = True
+
+    if error:
+        if not accessible:
+            msg = toolkit._('{kg} is not accessible and, hence, cannot be added to the federation.').format(kg=kg)
+        else:
+            # TODO: The exception should be included in the message so that it is stored in the database
+            msg = toolkit._('There was an error when adding {kg} to the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg)
+    else:
+        msg = toolkit._('Successfully added {kg} to the federation!').format(kg=kg)
+
+    NewsQuery.create(uuid4(), kg, 'error' if error else 'success', msg)
+
+
+def delete_kg_from_federation(kg):
+    error = False
+    try:
+        DETRUSTY_CONFIG.delete_endpoint(kg)
+        DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
+    except Exception as e:
+        error = True
+        logger.exception(e)
+    if error:
+        # TODO: The exception should be included in the message so that it is stored in the database
+        msg = toolkit._('There was an error when deleting {kg} from the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg)
+    else:
+        msg = toolkit._('Successfully removed {kg} from the federation!').format(kg=kg)
+
+    NewsQuery.create(uuid4(), kg, 'error' if error else 'success', msg)
