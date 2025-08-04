@@ -7,7 +7,7 @@ import ckan.model as model
 from DeTrusty import get_config
 from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
-from ckan.common import request, config, asbool
+from ckan.common import request, config
 from ckan.plugins import toolkit
 from flask import jsonify
 
