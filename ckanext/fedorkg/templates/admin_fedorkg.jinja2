@@ -47,12 +47,12 @@
                 <tr>
                     <td><a href="{{ kg }}" target="_blank">{{ kg }}</a></td>
                     <td class="center">
-                        <form class="admin" method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+                        <form class="admin" method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}" data-module="basic-form" novalidate="">
                             <input type="hidden" name="kg" value="{{ kg }}">
                             <input type="hidden" name="action" value="0">
-                            <button class="btn btn-danger btn-sm" title="{% trans %}Remove knowledge graph from the federation{% endtrans %}">
+                            <a class="btn btn-danger btn-sm" title="{% trans %}Remove knowledge graph from the federation{% endtrans %}" href="{{ h.url_for('fedorkg_admin.delete_kg', **{'kg': kg | urlencode | replace('/', '%2f') }) }}" data-module="confirm-action" data-module-content="{{ _('Are you sure you want to delete this knowledge graph?') }}">
                                 <i class="fa fa-trash"></i>
-                            </button>
+                            </a>
                         </form>
                     </td>
                 </tr>

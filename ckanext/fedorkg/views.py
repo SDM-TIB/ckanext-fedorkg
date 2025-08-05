@@ -131,6 +131,7 @@ fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
 fedorkg.add_url_rule('/sparql', view_func=sparql, methods=['POST'])
 fedorkg.add_url_rule('/llm', view_func=llm, methods=['POST'])
 admin_bp.add_url_rule('/fedorkg', view_func=FedORKGController.admin, methods=['GET', 'POST'])
+admin_bp.add_url_rule('/fedorkg/delete_kg/<kg>', view_func=FedORKGController.delete_kg, methods=['POST'])
 
 
 def get_blueprints():

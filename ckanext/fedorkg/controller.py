@@ -1,8 +1,10 @@
 import logging
 import os
+from urllib.parse import unquote
 from uuid import uuid4
 
 import ckan.lib.base as base
+import ckan.lib.helpers as h
 import ckan.logic as logic
 import ckan.model as model
 from DeTrusty import get_config
@@ -34,7 +36,7 @@ DETRUSTY_CONFIG = init_config()
 class FedORKGController:
 
     @staticmethod
-    def admin():
+    def _check_access():
         context = {
             'model': model,
             'session': model.Session,
@@ -45,6 +47,18 @@ class FedORKGController:
             logic.check_access('sysadmin', context, {})
         except logic.NotAuthorized:
             base.abort(403, toolkit._('Need to be system administrator to administer.'))
+
+    @staticmethod
+    def delete_kg(kg):
+        FedORKGController._check_access()
+        kg = unquote(kg)
+        toolkit.enqueue_job(delete_kg_from_federation, [kg], title=f'Deleting {kg} from federation')
+        toolkit.h.flash_notice('Your request has been added to the job queue. Check back later for results.')
+        return h.helper_functions.redirect_to(h.url_for('fedorkg_admin.admin'))
+
+    @staticmethod
+    def admin():
+        FedORKGController._check_access()
 
         msg = ''
         error = False
