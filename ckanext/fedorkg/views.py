@@ -12,6 +12,7 @@ from ckan.views.user import _extra_template_variables
 from ckanext.fedorkg import __version__ as fedorkg_version
 from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT, DETRUSTY_CONFIG
 from ckanext.fedorkg.metadata import FEDORKG_PATH
+from ckanext.fedorkg.model.crud import NewsQuery
 from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
@@ -104,6 +105,7 @@ def news():
         u'user_obj': toolkit.current_user,
         u'include_datasets': True}
     extra_vars = _extra_template_variables(context, data_dict)
+    extra_vars['fedorkg_news'] = NewsQuery.read_all_news()
     return toolkit.render('user/dashboard_fedorkg.html', extra_vars)
 
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])

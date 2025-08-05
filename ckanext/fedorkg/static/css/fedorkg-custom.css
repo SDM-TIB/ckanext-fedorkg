@@ -164,3 +164,21 @@ summary {
 .question {
   cursor: pointer;
 }
+
+.row_success {
+  background-color: #d8e6d8;
+  color: #234f23;
+  border-bottom: 1px solid #c4dac4;
+}
+
+.row_danger {
+  background-color: #f8f0f0;
+  color: #b55457;
+  border-bottom: 1px solid #c6898b;
+}
+
+.row_notice {
+  background-color: #cff4fc;
+  color: #055160;
+  border-bottom: 1px solid #b6effb;
+}

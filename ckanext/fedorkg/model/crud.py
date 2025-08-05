@@ -25,6 +25,10 @@ class NewsQuery:
         return Session.query(News).get(identifier)
 
     @classmethod
+    def read_all_news(cls):
+        return Session.query(News).order_by(News.date.desc()).all()
+
+    @classmethod
     def delete_news(cls, identifier):
         to_delete = cls.read_news(identifier)
         if to_delete is not None:
