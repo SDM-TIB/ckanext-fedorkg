@@ -182,3 +182,7 @@ summary {
   color: #055160;
   border-bottom: 1px solid #b6effb;
 }
+
+.center {
+  text-align: center;
+}

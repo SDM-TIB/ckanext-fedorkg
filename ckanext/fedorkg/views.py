@@ -2,6 +2,9 @@
 import os
 from typing import Any, cast
 
+import ckan.lib.base as base
+import ckan.logic as logic
+import ckan.model as model
 import requests
 from DeTrusty import __version__ as detrusty_version
 from DeTrusty import run_query
@@ -96,6 +99,22 @@ def llm():
 
 
 def news():
+    if request.method == 'POST':
+        context = {
+            'model': model,
+            'session': model.Session,
+            'user': toolkit.c.user,
+            'auth_user_obj': toolkit.c.userobj
+        }
+        try:
+            logic.check_access('sysadmin', context, {})
+        except logic.NotAuthorized:
+            base.abort(403, toolkit._('Need to be system administrator to administer.'))
+
+        news_id = request.form.get('news_id', None)
+        if news_id is not None:
+            NewsQuery.delete_news(news_id)
+
     context = cast(Context, {
         u'for_view': True,
         u'user': toolkit.current_user.name,
