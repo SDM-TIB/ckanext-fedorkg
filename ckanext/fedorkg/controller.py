@@ -113,6 +113,7 @@ class FedORKGController:
 
 def add_kg_to_federation(kg):
     error = False
+    msg = toolkit._('Added the endpoint successfully.')
     endpoint = Endpoint(kg)
     accessible = endpoint in _accessible_endpoints([endpoint])
     if accessible:
@@ -122,33 +123,29 @@ def add_kg_to_federation(kg):
         except Exception as e:
             error = True
             logger.exception(e)
+            msg = toolkit._('Exception while adding! {exc_type} {exc_args}').format(
+                exc_type=type(e).__name__,
+                exc_args=e.args
+            )
     else:
         error = True
-
-    if error:
-        if not accessible:
-            msg = toolkit._('{kg} is not accessible and, hence, cannot be added to the federation.').format(kg=kg)
-        else:
-            # TODO: The exception should be included in the message so that it is stored in the database
-            msg = toolkit._('There was an error when adding {kg} to the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg)
-    else:
-        msg = toolkit._('Successfully added {kg} to the federation!').format(kg=kg)
+        msg = toolkit._('The endpoint is not accessible and, hence, cannot be added to the federation.')
 
     NewsQuery.create(uuid4(), kg, 'error' if error else 'success', msg)
 
 
 def delete_kg_from_federation(kg):
     error = False
+    msg = toolkit._('Removed the endpoint successfully.')
     try:
         DETRUSTY_CONFIG.delete_endpoint(kg)
         DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
     except Exception as e:
         error = True
         logger.exception(e)
-    if error:
-        # TODO: The exception should be included in the message so that it is stored in the database
-        msg = toolkit._('There was an error when deleting {kg} from the federation! If you are an admin, check the logs for more details on what happened.').format(kg=kg)
-    else:
-        msg = toolkit._('Successfully removed {kg} from the federation!').format(kg=kg)
+        msg = toolkit._('Exception while removing! {exc_type} {exc_args}').format(
+            exc_type=type(e).__name__,
+            exc_args=e.args
+        )
 
     NewsQuery.create(uuid4(), kg, 'error' if error else 'success', msg)
