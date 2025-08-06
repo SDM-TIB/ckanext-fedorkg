@@ -126,6 +126,7 @@ class FedORKGController:
 
 
 def add_kg_to_federation(kg):
+    NewsQuery.create(uuid4(), kg, 'notice', toolkit._('Starting to add the endpoint.'))
     error = False
     msg = toolkit._('Added the endpoint successfully.')
     endpoint = Endpoint(kg)
@@ -149,6 +150,7 @@ def add_kg_to_federation(kg):
 
 
 def delete_kg_from_federation(kg):
+    NewsQuery.create(uuid4(), kg, 'notice', toolkit._('Starting to delete the endpoint.'))
     error = False
     msg = toolkit._('Removed the endpoint successfully.')
     try:
