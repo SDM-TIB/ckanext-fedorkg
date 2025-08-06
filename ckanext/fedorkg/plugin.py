@@ -1,5 +1,6 @@
 
 import multiprocessing
+import os
 import socket
 import subprocess
 from logging import getLogger
@@ -74,7 +75,8 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         except socket.error:
             log.debug('Port 9000 IS NOT bound')
             log.info('Starting Metadata KG now')
-            process = multiprocessing.Process(target=lambda: subprocess.run('cd /srv/app; ckan -c ckan.ini fedorkg start &> /dev/null &', shell=True))
+            ckan_ini_path = os.getenv('CKAN_INI', '/srv/app/ckan.ini')
+            process = multiprocessing.Process(target=lambda: subprocess.run('ckan -c {ckan_ini} fedorkg start &> /dev/null &'.format(ckan_ini=ckan_ini_path), shell=True))
             process.start()
 
         super().__init__(*args, **kwargs)
