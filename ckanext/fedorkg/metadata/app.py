@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from pyoxigraph import Store, RdfFormat
+from pyoxigraph import Store, RdfFormat, Literal
 
 from . import SEMSD_PATH
 
@@ -33,15 +33,22 @@ def sparql_endpoint():
 
         # Format results into a JSON-friendly structure
         response = {
-            'head': {'vars': results.variables},
+            'head': {'vars': [var.value for var in results.variables]},
             'results': {'bindings': []}
         }
 
         for result in results:
             binding = {}
             for var in results.variables:
-                value = result.get(var)
-                binding[var] = {'type': 'literal', 'value': str(value)}
+                if result[var]:
+                    value = result[var].value
+                    if not isinstance(result[var], Literal):
+                        binding[str(var.value)] = {'type': 'uri', 'value': value}
+                    else:
+                        if result[var].datatype is not None:
+                            binding[str(var.value)] = {'type': 'typed-literal', 'value': value, 'datatype': result[var].datatype.value}
+                        else:
+                            binding[str(var.value)] = {'type': 'literal', 'value': value}
             response['results']['bindings'].append(binding)
 
         return jsonify(response)

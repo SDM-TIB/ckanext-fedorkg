@@ -13,8 +13,8 @@ from ckan.plugins import toolkit
 from ckan.types import Context
 from ckan.views.user import _extra_template_variables
 from ckanext.fedorkg import __version__ as fedorkg_version
-from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT, DETRUSTY_CONFIG
-from ckanext.fedorkg.metadata import FEDORKG_PATH
+from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
+from ckanext.fedorkg.metadata import FEDORKG_PATH, MetadataConfig
 from ckanext.fedorkg.model.crud import NewsQuery
 from flask import Blueprint, jsonify, request
 
@@ -54,7 +54,7 @@ def sparql():
     return jsonify(
         run_query(
             query=query,
-            config=DETRUSTY_CONFIG,
+            config=MetadataConfig(),
             join_stars_locally=False,
             yasqe=yasqe,
             timeout=int(config.get(QUERY_TIMEOUT))
@@ -126,6 +126,7 @@ def news():
     extra_vars = _extra_template_variables(context, data_dict)
     extra_vars['fedorkg_news'] = NewsQuery.read_all_news()
     return toolkit.render('user/dashboard_fedorkg.html', extra_vars)
+
 
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
 fedorkg.add_url_rule('/sparql', view_func=sparql, methods=['POST'])

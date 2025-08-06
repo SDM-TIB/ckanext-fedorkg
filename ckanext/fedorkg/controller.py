@@ -12,7 +12,7 @@ from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config
 from ckan.plugins import toolkit
-from ckanext.fedorkg.metadata import FEDORKG_PATH, SEMSD_PATH
+from ckanext.fedorkg.metadata import FEDORKG_PATH, SEMSD_PATH, MetadataConfig
 from ckanext.fedorkg.model.crud import NewsQuery
 from flask import jsonify
 
@@ -23,14 +23,6 @@ QUERY_TIMEOUT = 'ckanext.fedorkg.timeout'
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler())
-
-
-def init_config():
-    os.makedirs(FEDORKG_PATH, exist_ok=True)
-    return get_config(SEMSD_PATH)
-
-
-DETRUSTY_CONFIG = init_config()
 
 
 class FedORKGController:
@@ -70,7 +62,7 @@ class FedORKGController:
                 if query != '' and query_name != '':
                     decomposed_query = None
                     try:
-                        decomposed_query = Decomposer(query, DETRUSTY_CONFIG).decompose()
+                        decomposed_query = Decomposer(query, MetadataConfig()).decompose()
                     except:
                         error = True
                         toolkit.h.flash_error(toolkit._('The query is malformed. Please, check your syntax.'))
@@ -121,7 +113,7 @@ class FedORKGController:
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
                                   'timeout': config.get(QUERY_TIMEOUT),
-                                  'kgs': sorted(list(DETRUSTY_CONFIG.getEndpoints().keys()))
+                                  'kgs': sorted(list(MetadataConfig().getEndpoints().keys()))
                               })
 
 
@@ -133,8 +125,9 @@ def add_kg_to_federation(kg):
     accessible = endpoint in _accessible_endpoints([endpoint])
     if accessible:
         try:
-            DETRUSTY_CONFIG.add_endpoint(kg)
-            DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
+            metadata = MetadataConfig()
+            metadata.add_endpoint(kg)
+            metadata.saveToFile(SEMSD_PATH)
         except Exception as e:
             error = True
             logger.exception(e)
@@ -154,8 +147,9 @@ def delete_kg_from_federation(kg):
     error = False
     msg = toolkit._('Removed the endpoint successfully.')
     try:
-        DETRUSTY_CONFIG.delete_endpoint(kg)
-        DETRUSTY_CONFIG.saveToFile(SEMSD_PATH)
+        metadata = MetadataConfig()
+        metadata.delete_endpoint(kg)
+        metadata.saveToFile(SEMSD_PATH)
     except Exception as e:
         error = True
         logger.exception(e)
