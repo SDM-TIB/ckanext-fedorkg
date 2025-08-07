@@ -52,6 +52,10 @@ pip install -r ./ckanext-fedorkg/requirements.txt
    $CKAN_STORAGE_PATH/fedorkg/prompt.txt
    ```
 4. Provide your OpenAI API code in an environment variable called `OPENAI_API_KEY`.
+5. Make sure that the CKAN background job workers are running.
+   Without them, the federation management features of FedORKG, i.e., adding and deleting knowledge graphs, will not work.
+   - CKAN 2.9: https://docs.ckan.org/en/2.9/maintaining/background-tasks.html
+   - CKAN 2.10: https://docs.ckan.org/en/2.10/maintaining/background-tasks.html
 
 ## Configuration Options
 
