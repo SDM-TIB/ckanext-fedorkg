@@ -1,5 +1,4 @@
 import logging
-import os
 from urllib.parse import unquote
 from uuid import uuid4
 
@@ -7,7 +6,6 @@ import ckan.lib.base as base
 import ckan.lib.helpers as h
 import ckan.logic as logic
 import ckan.model as model
-from DeTrusty import get_config
 from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config
