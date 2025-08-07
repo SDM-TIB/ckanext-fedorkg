@@ -56,6 +56,23 @@ Please, also provide your API token in an environment variable called `OPENAI_AP
 - `ckanext.fedorkg.timeout` query execution timeout in seconds
   - Default: 60
 
+## Commands
+
+`ckanext-fedorkg` offers the following commands, assuming `$CKAN_INI` is the path of your CKAN configuration file:
+
+1. `initdb`: initializes the database table for the federation management news.
+   ```bash
+   ckan -c $CKAN_INI fedorkg initdb
+   ```
+2. `start`: starts the SPARQL endpoint serving the source description required for query decomposition and query planning.
+   ```bash
+   ckan -c $CKAN_INI fedorkg start
+   ```
+3. `version`: shows the current version of `ckanext-fedorkg` and DeTrusty.
+   ```bash
+   ckan -c $CKAN_INI fedorkg version
+   ```
+
 ## Changelog
 
 If you are interested in what has changed, check out the [changelog](CHANGELOG.md).
