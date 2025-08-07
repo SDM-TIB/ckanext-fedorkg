@@ -1,9 +1,12 @@
+import logging
+
 from flask import Flask, request, jsonify
 from pyoxigraph import Store, RdfFormat, Literal
 
 from . import SEMSD_PATH
 
 app = Flask(__name__)
+logger = logging.getLogger(__name__)
 
 store = Store()
 with open(SEMSD_PATH, 'r') as file:
@@ -54,6 +57,7 @@ def sparql_endpoint():
         return jsonify(response)
 
     except Exception as e:
+        logger.exception(e)
         return jsonify({'error': str(e)}), 500
 
 
