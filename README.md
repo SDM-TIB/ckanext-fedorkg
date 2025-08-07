@@ -1,7 +1,7 @@
 [![Latest Release](http://img.shields.io/github/release/SDM-TIB/ckanext-fedorkg.svg?logo=github)](https://github.com/SDM-TIB/ckanext-fedorkg/releases)
 [![License: GPL v3](https://img.shields.io/github/license/SDM-TIB/ckanext-fedorkg?color=blue)](LICENSE.md)
 
-[![CKAN](https://img.shields.io/badge/ckan-2.10-orange.svg?style=flat-square)](https://github.com/ckan/ckan/tree/2.10) [![CKAN](https://img.shields.io/badge/ckan-2.9-orange.svg?style=flat-square)](https://github.com/ckan/ckan/tree/2.9)
+[![CKAN](https://img.shields.io/badge/ckan-2.9%20%7C%202.10-orange.svg?style=flat)](https://github.com/ckan/ckan)
 
 # FedORKG
 
