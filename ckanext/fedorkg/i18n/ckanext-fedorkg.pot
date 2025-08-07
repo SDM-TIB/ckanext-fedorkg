@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.8.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-17 15:37+0200\n"
+"POT-Creation-Date: 2025-08-07 10:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ckanext/fedorkg/controller.py:51
+#: ckanext/fedorkg/controller.py:39 ckanext/fedorkg/views.py:112
 msgid "Need to be system administrator to administer."
 msgstr ""
 
@@ -48,28 +48,32 @@ msgstr ""
 msgid "New query timeout set successfully."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:116
-msgid ""
-"There was an error when deleting {kg} from the federation! If you are an "
-"admin, check the logs for more details on what happened."
+#: ckanext/fedorkg/controller.py:119
+msgid "Starting to add the endpoint."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:118
-msgid "Successfully removed {kg} from the federation!"
+#: ckanext/fedorkg/controller.py:121
+msgid "Added the endpoint successfully."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:145
-msgid "{kg} is not accessible and, hence, cannot be added to the federation."
+#: ckanext/fedorkg/controller.py:132
+msgid "Exception while adding! {exc_type} {exc_args}"
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:147
-msgid ""
-"There was an error when adding {kg} to the federation! If you are an admin, "
-"check the logs for more details on what happened."
+#: ckanext/fedorkg/controller.py:138
+msgid "The endpoint is not accessible and, hence, cannot be added to the federation."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:149
-msgid "Successfully added {kg} to the federation!"
+#: ckanext/fedorkg/controller.py:144
+msgid "Starting to delete the endpoint."
+msgstr ""
+
+#: ckanext/fedorkg/controller.py:146
+msgid "Removed the endpoint successfully."
+msgstr ""
+
+#: ckanext/fedorkg/controller.py:154
+msgid "Exception while removing! {exc_type} {exc_args}"
 msgstr ""
 
 #: ckanext/fedorkg/templates/admin_fedorkg.jinja2:10
@@ -119,11 +123,16 @@ msgid "Knowledge Graphs in the Federation"
 msgstr ""
 
 #: ckanext/fedorkg/templates/admin_fedorkg.jinja2:42
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:25
 msgid "Knowledge Graph"
 msgstr ""
 
 #: ckanext/fedorkg/templates/admin_fedorkg.jinja2:53
 msgid "Remove knowledge graph from the federation"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:53
+msgid "Are you sure you want to delete this knowledge graph?"
 msgstr ""
 
 #: ckanext/fedorkg/templates/admin_fedorkg.jinja2:64
@@ -222,6 +231,29 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ckanext/fedorkg/templates/user/dashboard.html:5
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:19
 msgid "FedORKG News"
+msgstr ""
+
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:26
+msgid "Message"
+msgstr ""
+
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:27
+msgid "Date"
+msgstr ""
+
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:40
+msgid "Remove this news entry"
+msgstr ""
+
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:50
+msgid "There are currently no news about added or deleted endpoints."
+msgstr ""
+
+#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:51
+msgid ""
+"If you add or delete endpoints to FedORKG, the result of the background tasks"
+" will show up here."
 msgstr ""
 
