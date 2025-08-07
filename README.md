@@ -56,6 +56,14 @@ pip install -r ./ckanext-fedorkg/requirements.txt
    Without them, the federation management features of FedORKG, i.e., adding and deleting knowledge graphs, will not work.
    - CKAN 2.9: https://docs.ckan.org/en/2.9/maintaining/background-tasks.html
    - CKAN 2.10: https://docs.ckan.org/en/2.10/maintaining/background-tasks.html
+6. Initialize the database table for the FedORKG federation management news:
+   ```bash
+   ckan -c $CKAN_INI fedorkg initdb
+   ```
+7. Start the FedORKG source description SPARQL endpoint the background:
+   ```bash
+   ckan -c $CKAN_INI fedorkg start &> $CKAN_STORAGE_PATH/fedorkg/fedorkg-metadata.log &
+   ```
 
 ## Configuration Options
 
