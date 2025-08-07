@@ -15,6 +15,7 @@ class MetadataConfig:
     def __new__(cls):
         if not MetadataConfig.instance:
             MetadataConfig.instance = SPARQLConfig('http://localhost:9000/sparql')
+            MetadataConfig.instance.set_update_credentials('http://localhost:9000/sparql-update', '', '')
         return MetadataConfig.instance
 
     def __getattr__(self, item):

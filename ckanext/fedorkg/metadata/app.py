@@ -61,5 +61,20 @@ def sparql_endpoint():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/sparql-update', methods=['POST'])
+def update():
+    query = request.data.decode()
+
+    if not query:
+        return jsonify({'error': 'No update query provided'}), 400
+
+    try:
+        store.update(query)
+        return 'success'
+    except Exception as e:
+        logger.exception(e)
+        return jsonify({'error': str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(port=9000)
