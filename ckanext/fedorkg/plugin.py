@@ -12,6 +12,7 @@ import ckanext.fedorkg.views as views
 from ckan.lib.plugins import DefaultTranslation
 from ckanext.fedorkg import cli
 from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
+from ckanext.fedorkg.metadata import FEDORKG_PATH
 
 log = getLogger(__name__)
 
@@ -34,7 +35,9 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
             log.debug('Port 9000 IS NOT bound')
             log.info('Starting Metadata KG now')
             ckan_ini_path = os.getenv('CKAN_INI', '/srv/app/ckan.ini')
-            process = multiprocessing.Process(target=lambda: subprocess.run('ckan -c {ckan_ini} fedorkg start &> /dev/null &'.format(ckan_ini=ckan_ini_path), shell=True))
+            process = multiprocessing.Process(target=lambda: subprocess.run(
+                'ckan -c {ckan_ini} fedorkg start &> {fedorkg_path}/fedorkg-metadata.log &'.format(
+                    ckan_ini=ckan_ini_path, fedorkg_path=FEDORKG_PATH), shell=True))
             process.start()
 
         super().__init__(*args, **kwargs)
