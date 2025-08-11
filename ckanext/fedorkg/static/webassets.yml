@@ -26,11 +26,3 @@ admin-css:
   output: fedorkg/%(version)s_fedorkg_admin.css
   contents:
     - css/fedorkg-admin.css
-
-admin:
-  output: fedorkg/%(version)s_fedorkg_admin.js
-  extra:
-    preload:
-      - fedorkg/admin-css
-  contents:
-    - js/fedorkg-admin.js

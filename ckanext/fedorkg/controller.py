@@ -12,7 +12,6 @@ from ckan.common import request, config
 from ckan.plugins import toolkit
 from ckanext.fedorkg.metadata import FEDORKG_PATH, SEMSD_PATH, MetadataConfig
 from ckanext.fedorkg.model.crud import NewsQuery
-from flask import jsonify
 
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
 DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
@@ -47,10 +46,17 @@ class FedORKGController:
         return h.helper_functions.redirect_to(h.url_for('fedorkg_admin.admin'))
 
     @staticmethod
+    def add_kg():
+        FedORKGController._check_access()
+        kg = request.form.get('kg')
+        toolkit.enqueue_job(add_kg_to_federation, [kg], title=f'Adding {kg} to federation')
+        toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
+        return h.helper_functions.redirect_to(h.url_for('fedorkg_admin.admin'))
+
+    @staticmethod
     def admin():
         FedORKGController._check_access()
 
-        msg = ''
         error = False
         if request.method == 'POST':
             action = request.form.get('action', None)
@@ -93,18 +99,6 @@ class FedORKGController:
                         QUERY_TIMEOUT: timeout
                     })
                     toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
-            elif action == '0' or action == '1':
-                kg = request.form.get('kg')
-                if action == '0':
-                    toolkit.enqueue_job(delete_kg_from_federation, [kg], title=f'Deleting {kg} from federation')
-                    toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
-                elif action == '1':
-                    toolkit.enqueue_job(add_kg_to_federation, [kg], title=f'Adding {kg} to federation')
-                    toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
-                return jsonify({
-                    'error': error,
-                    'msg': msg
-                })
 
         return toolkit.render('admin_fedorkg.jinja2',
                               extra_vars={
