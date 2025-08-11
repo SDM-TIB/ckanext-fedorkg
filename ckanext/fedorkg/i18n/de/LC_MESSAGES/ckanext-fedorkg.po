@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.7.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-07 10:31+0200\n"
+"POT-Creation-Date: 2025-08-11 09:20+0200\n"
 "PO-Revision-Date: 2024-04-08 13:44+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -22,6 +22,15 @@ msgstr ""
 #: ckanext/fedorkg/controller.py:39 ckanext/fedorkg/views.py:112
 msgid "Need to be system administrator to administer."
 msgstr "Nur Systemadministratoren haben hier Zugriff."
+
+#: ckanext/fedorkg/controller.py:46 ckanext/fedorkg/controller.py:100
+#: ckanext/fedorkg/controller.py:103
+msgid ""
+"Your request has been added to the job queue. Check the FedORKG news feed"
+" for updates on the task."
+msgstr ""
+"Die Anfrage wurde zur Jobliste hinzugefügt. Updates werden in den FedORKG"
+" Neuigkeiten angezeigt."
 
 #: ckanext/fedorkg/controller.py:66
 msgid "The query is malformed. Please, check your syntax."
@@ -292,4 +301,6 @@ msgstr "Es gibt derzeit keine Einträge über hinzugefügte oder entfernte Endpu
 msgid ""
 "If you add or delete endpoints to FedORKG, the result of the background "
 "tasks will show up here."
-msgstr "Wenn Sie Endpunkte zu FedORKG hinzufügen oder entfernen, dann werden hier die Nachrichten der Hintergrundaufgaben angezeigt."
+msgstr ""
+"Wenn Sie Endpunkte zu FedORKG hinzufügen oder entfernen, dann werden hier"
+" die Nachrichten der Hintergrundaufgaben angezeigt."
