@@ -43,7 +43,7 @@ class FedORKGController:
         FedORKGController._check_access()
         kg = unquote(kg)
         toolkit.enqueue_job(delete_kg_from_federation, [kg], title=f'Deleting {kg} from federation')
-        toolkit.h.flash_notice('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.')
+        toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
         return h.helper_functions.redirect_to(h.url_for('fedorkg_admin.admin'))
 
     @staticmethod
@@ -97,10 +97,10 @@ class FedORKGController:
                 kg = request.form.get('kg')
                 if action == '0':
                     toolkit.enqueue_job(delete_kg_from_federation, [kg], title=f'Deleting {kg} from federation')
-                    toolkit.h.flash_notice('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.')
+                    toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
                 elif action == '1':
                     toolkit.enqueue_job(add_kg_to_federation, [kg], title=f'Adding {kg} to federation')
-                    toolkit.h.flash_notice('Your request has been added to the job queue.  Check the FedORKG news feed for updates on the task.')
+                    toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
                 return jsonify({
                     'error': error,
                     'msg': msg
