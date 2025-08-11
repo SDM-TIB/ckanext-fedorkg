@@ -1,7 +1,9 @@
 import logging
 
+from DeTrusty.Molecule import SEMSD
 from flask import Flask, request, jsonify
 from pyoxigraph import Store, RdfFormat, Literal
+from pyoxigraph import serialize as oxi_serialize
 
 from . import SEMSD_PATH
 
@@ -70,6 +72,19 @@ def update():
 
     try:
         store.update(query)
+        return 'success'
+    except Exception as e:
+        logger.exception(e)
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/serialize', methods=['POST'])
+def serialize():
+    try:
+        path = request.args.get('path')
+        oxi_serialize(store, path,
+                      format=RdfFormat.TURTLE,
+                      prefixes={'semsd': SEMSD})
         return 'success'
     except Exception as e:
         logger.exception(e)
