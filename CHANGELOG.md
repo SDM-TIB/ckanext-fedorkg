@@ -1,5 +1,16 @@
 # Changelog
 
+# v0.9.0 - 2025-08-13
+- Update `DeTrusty` to `v0.21.2`
+- Use `DeTrusty` for federation management
+- Move adding/deleting knowledge graphs to background tasks
+- Store status of background tasks in database
+- Add table with status updates to the admin panel
+- Add confirmation dialog for deleting knowledge graphs from the federation
+- Serve a SPARQL endpoint containing the source descriptions
+- Add CLI commands to initialize the database and start the SPARQL endpoint serving the source descriptions
+- Update German translation
+
 # v0.8.2 - 2025-04-09
 - Fix URL for connecting to LLM
 
