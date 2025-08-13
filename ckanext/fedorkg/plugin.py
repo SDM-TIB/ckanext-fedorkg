@@ -26,22 +26,6 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
     if toolkit.check_ckan_version(min_version='2.10'):
         p.implements(p.IConfigDeclaration)
 
-    def __init__(self, *args, **kwargs):
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.connect(('localhost', 9000))
-            log.debug('Port 9000 IS already bound')
-        except socket.error:
-            log.debug('Port 9000 IS NOT bound')
-            log.info('Starting Metadata KG now')
-            ckan_ini_path = os.getenv('CKAN_INI', '/srv/app/ckan.ini')
-            process = multiprocessing.Process(target=lambda: subprocess.run(
-                'ckan -c {ckan_ini} fedorkg start &> {fedorkg_path}/fedorkg-metadata.log &'.format(
-                    ckan_ini=ckan_ini_path, fedorkg_path=FEDORKG_PATH), shell=True))
-            process.start()
-
-        super().__init__(*args, **kwargs)
-
     def get_commands(self):
         return cli.get_commands()
 
