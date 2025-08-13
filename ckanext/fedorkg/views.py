@@ -137,6 +137,4 @@ admin_bp.add_url_rule('/fedorkg/add_kg', view_func=FedORKGController.add_kg, met
 
 
 def get_blueprints():
-    from ckan.views.dashboard import dashboard
-    dashboard.add_url_rule('/fedorkg', view_func=news, methods=['GET', 'POST'])
-    return [fedorkg, admin_bp, dashboard]
+    return [fedorkg, admin_bp]

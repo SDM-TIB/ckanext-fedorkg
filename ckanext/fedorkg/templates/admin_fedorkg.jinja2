@@ -2,6 +2,16 @@
 
 {% import 'macros/form.html' as form %}
 
+{% macro row_type(notification_type) %}
+    {% if notification_type | lower == 'success' %}
+        {{ 'row_success' }}
+    {% elif notification_type | lower == 'error' %}
+        {{ 'row_danger' }}
+    {% else %}
+        {{ 'row_notice' }}
+    {% endif %}
+{% endmacro %}
+
 {% block primary_content_inner %}
     {% asset 'fedorkg/admin-css' %}
 
@@ -64,6 +74,43 @@
             </tr>
         </tbody>
     </table>
+
+    <hr>
+    <h2>{% trans %}FedORKG News{% endtrans %}</h2>
+    <div>
+        {% if fedorkg_news %}
+            <table class="table table-header table-hover table-bordered" id="fedorkg_news">
+                <thead>
+                <tr>
+                    <th>{% trans %}Knowledge Graph{% endtrans %}</th>
+                    <th>{% trans %}Message{% endtrans %}</th>
+                    <th>{% trans %}Date{% endtrans %}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for news in fedorkg_news %}
+                    <tr class="{{ row_type(news.notification_type) | trim }}">
+                        <td>{{ news.endpoint_url }}</td>
+                        <td>{{ news.message }}</td>
+                        <td>{{ news.date }}</td>
+                        <td class="center">
+                            <form method="POST" action="{{ h.url_for('dashboard.news') }}">
+                                <input type="hidden" name="news_id" value="{{ news.identifier }}">
+                                <button class="btn btn-danger btn-sm" title="{% trans %}Remove this news entry{% endtrans %}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            {% trans %}There are currently no news about added or deleted endpoints.{% endtrans %}
+            {% trans %}If you add or delete endpoints to FedORKG, the result of the background tasks will show up here.{% endtrans %}
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block secondary_content %}
@@ -79,6 +126,7 @@
                 <p><strong>Default Query:</strong> The default query shown in the SPARQL query editor.</p>
                 <p><strong>Query Timeout:</strong> The maximum time in seconds a query is executed. Unfinished queries are canceled and return no result.</p>
                 <p><strong>Knowledge Graphs in the Federation:</strong> Mange the knowledge graphs that are included in the federation of FedORKG. Keep in mind that only included knowledge graphs can be queried.</p>
+                <p><strong>FedORKG News:</strong> A log of the background tasks for adding and deleting knowledge graphs.</p>
             {% endtrans %}
         </div>
     </div>

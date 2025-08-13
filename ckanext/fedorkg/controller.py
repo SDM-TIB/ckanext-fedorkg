@@ -105,7 +105,8 @@ class FedORKGController:
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
                                   'timeout': config.get(QUERY_TIMEOUT),
-                                  'kgs': sorted(list(MetadataConfig().getEndpoints().keys()))
+                                  'kgs': sorted(list(MetadataConfig().getEndpoints().keys())),
+                                  'fedorkg_news': NewsQuery.read_all_news()
                               })
 
 
