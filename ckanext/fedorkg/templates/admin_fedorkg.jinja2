@@ -63,7 +63,7 @@
             <tr>
                 <form class="admin" method="POST" action="{{ h.url_for('fedorkg_admin.add_kg') }}">
                     <td>
-                        <input class="form-control" type="text" name="kg" placeholder="{% trans %}URL of the SPARQL endpoint{% endtrans %}" size="60" required>
+                        <input class="form-control" type="text" name="kg" placeholder="{% trans %}URL of the SPARQL endpoint of the knowledge graph{% endtrans %}" size="60" required>
                     </td>
                     <td class="center">
                         <button class="btn btn-success btn-sm" title="{% trans %}Add knowledge graph to the federation{% endtrans %}">
@@ -107,8 +107,8 @@
                 </tbody>
             </table>
         {% else %}
-            {% trans %}There are currently no news about added or deleted endpoints.{% endtrans %}
-            {% trans %}If you add or delete endpoints to FedORKG, the result of the background tasks will show up here.{% endtrans %}
+            {% trans %}There are currently no news about added or deleted knowledge graphs.{% endtrans %}
+            {% trans %}If you add or delete knowledge graphs to FedORKG, the result of the background tasks will show up here.{% endtrans %}
         {% endif %}
     </div>
 {% endblock %}

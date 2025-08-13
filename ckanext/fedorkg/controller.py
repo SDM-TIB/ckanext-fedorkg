@@ -111,9 +111,9 @@ class FedORKGController:
 
 
 def add_kg_to_federation(kg):
-    NewsQuery.create(uuid4(), kg, 'notice', toolkit._('Starting to add the endpoint.'))
+    NewsQuery.create(uuid4(), kg, 'notice', toolkit._('Starting to add the knowledge graph.'))
     error = False
-    msg = toolkit._('Added the endpoint successfully.')
+    msg = toolkit._('Added the knowledge graph successfully.')
     endpoint = Endpoint(kg)
     accessible = endpoint in _accessible_endpoints([endpoint])
     if accessible:
@@ -130,15 +130,15 @@ def add_kg_to_federation(kg):
             )
     else:
         error = True
-        msg = toolkit._('The endpoint is not accessible and, hence, cannot be added to the federation.')
+        msg = toolkit._('The knowledge graph is not accessible and, hence, cannot be added to the federation.')
 
     NewsQuery.create(uuid4(), kg, 'error' if error else 'success', msg)
 
 
 def delete_kg_from_federation(kg):
-    NewsQuery.create(uuid4(), kg, 'notice', toolkit._('Starting to delete the endpoint.'))
+    NewsQuery.create(uuid4(), kg, 'notice', toolkit._('Starting to delete the knowledge graph.'))
     error = False
-    msg = toolkit._('Removed the endpoint successfully.')
+    msg = toolkit._('Removed the knowledge graph successfully.')
     try:
         metadata = MetadataConfig()
         metadata.delete_endpoint(kg)
