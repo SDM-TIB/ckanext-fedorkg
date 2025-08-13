@@ -1,21 +1,14 @@
 
 import os
-from typing import Any, cast
 
-import ckan.lib.base as base
-import ckan.logic as logic
-import ckan.model as model
 import requests
 from DeTrusty import __version__ as detrusty_version
 from DeTrusty import run_query
 from ckan.common import request, config
 from ckan.plugins import toolkit
-from ckan.types import Context
-from ckan.views.user import _extra_template_variables
 from ckanext.fedorkg import __version__ as fedorkg_version
 from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
 from ckanext.fedorkg.metadata import FEDORKG_PATH, MetadataConfig
-from ckanext.fedorkg.model.crud import NewsQuery
 from flask import Blueprint, jsonify, request
 
 fedorkg = Blueprint('fedorkg', __name__, url_prefix='/fedorkg')
@@ -96,36 +89,6 @@ def llm():
             raise RuntimeError(f"HTTP error occurred: {http_err}")
         except Exception as err:
             raise RuntimeError(f"An error occurred: {err}")
-
-
-def news():
-    if request.method == 'POST':
-        context = {
-            'model': model,
-            'session': model.Session,
-            'user': toolkit.c.user,
-            'auth_user_obj': toolkit.c.userobj
-        }
-        try:
-            logic.check_access('sysadmin', context, {})
-        except logic.NotAuthorized:
-            base.abort(403, toolkit._('Need to be system administrator to administer.'))
-
-        news_id = request.form.get('news_id', None)
-        if news_id is not None:
-            NewsQuery.delete_news(news_id)
-
-    context = cast(Context, {
-        u'for_view': True,
-        u'user': toolkit.current_user.name,
-        u'auth_user_obj': toolkit.current_user
-    })
-    data_dict: dict[str, Any] = {
-        u'user_obj': toolkit.current_user,
-        u'include_datasets': True}
-    extra_vars = _extra_template_variables(context, data_dict)
-    extra_vars['fedorkg_news'] = NewsQuery.read_all_news()
-    return toolkit.render('user/dashboard_fedorkg.html', extra_vars)
 
 
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
