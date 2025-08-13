@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-fedorkg 0.8.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-11 09:20+0200\n"
+"POT-Creation-Date: 2025-08-13 12:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,149 +18,195 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ckanext/fedorkg/controller.py:39 ckanext/fedorkg/views.py:112
+#: ckanext/fedorkg/controller.py:38 ckanext/fedorkg/views.py:112
 msgid "Need to be system administrator to administer."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:46 ckanext/fedorkg/controller.py:100
-#: ckanext/fedorkg/controller.py:103
+#: ckanext/fedorkg/controller.py:45 ckanext/fedorkg/controller.py:53
 msgid ""
 "Your request has been added to the job queue. Check the FedORKG news feed for"
 " updates on the task."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:66
+#: ckanext/fedorkg/controller.py:72
 msgid "The query is malformed. Please, check your syntax."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:70
+#: ckanext/fedorkg/controller.py:76
 msgid "The query cannot be answer by the federation of FedORKG."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:78
+#: ckanext/fedorkg/controller.py:84
 msgid "The default query has been updated successfully."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:80
+#: ckanext/fedorkg/controller.py:86
 msgid "The default query and its name are required."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:87
+#: ckanext/fedorkg/controller.py:93
 msgid ""
 "The query timeout is specified in full seconds. Please, provide input that "
 "can be parsed as an integer."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:95
+#: ckanext/fedorkg/controller.py:101
 msgid "New query timeout set successfully."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:119
-msgid "Starting to add the endpoint."
+#: ckanext/fedorkg/controller.py:114
+msgid "Starting to add the knowledge graph."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:121
-msgid "Added the endpoint successfully."
+#: ckanext/fedorkg/controller.py:116
+msgid "Added the knowledge graph successfully."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:132
+#: ckanext/fedorkg/controller.py:127
 msgid "Exception while adding! {exc_type} {exc_args}"
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:138
-msgid "The endpoint is not accessible and, hence, cannot be added to the federation."
+#: ckanext/fedorkg/controller.py:133
+msgid ""
+"The knowledge graph is not accessible and, hence, cannot be added to the "
+"federation."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:144
-msgid "Starting to delete the endpoint."
+#: ckanext/fedorkg/controller.py:139
+msgid "Starting to delete the knowledge graph."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:146
-msgid "Removed the endpoint successfully."
+#: ckanext/fedorkg/controller.py:141
+msgid "Removed the knowledge graph successfully."
 msgstr ""
 
-#: ckanext/fedorkg/controller.py:154
+#: ckanext/fedorkg/controller.py:149
 msgid "Exception while removing! {exc_type} {exc_args}"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:10
-msgid "Processing request, please be patient."
-msgstr ""
-
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:13
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:17
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:18
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:22
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:125
 msgid "Default Query"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:16
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:21
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:124
 msgid "Default Query Name"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:16
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:21
 msgid "default query name"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:20
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:25
 msgid "Set default query"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:20
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:32
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:25
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:37
 msgid "Update"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:26
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:31
 msgid "Query Execution Timeout"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:29
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:34
 msgid "Query Timeout (in seconds)"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:29
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:34
 msgid "query execution timeout"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:32
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:37
 msgid "Set query timeout"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:38
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:43
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:127
 msgid "Knowledge Graphs in the Federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:42
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:25
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:47
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:85
 msgid "Knowledge Graph"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:53
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:56
 msgid "Remove knowledge graph from the federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:53
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:56
 msgid "Are you sure you want to delete this knowledge graph?"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:64
-msgid "URL of the SPARQL endpoint"
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:66
+msgid "URL of the SPARQL endpoint of the knowledge graph"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:67
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:69
 msgid "Add knowledge graph to the federation"
 msgstr ""
 
-#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:84
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:79
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:128
+msgid "FedORKG News"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:86
+msgid "Message"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:87
+msgid "Date"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:100
+msgid "Remove this news entry"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:110
+msgid "There are currently no news about added or deleted knowledge graphs."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:111
 msgid ""
-"<p>Configuration options to manage the FedORKG instance.</p> "
-"<p><strong>Default Query Name:</strong> The title of the tab in the SPARQL "
-"query editor holding the default query.</p> <p><strong>Default "
-"Query:</strong> The default query shown in the SPARQL query editor.</p> "
-"<p><strong>Query Timeout:</strong> The maximum time in seconds a query is "
-"executed. Unfinished queries are canceled and return no result.</p> "
-"<p><strong>Knowledge Graphs in the Federation:</strong> Mange the knowledge "
-"graphs that are included in the federation of FedORKG. Keep in mind that only"
-" included knowledge graphs can be queried.</p>"
+"If you add or delete knowledge graphs to FedORKG, the result of the "
+"background tasks will show up here."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:123
+msgid "Configuration options to manage the FedORKG instance."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:124
+msgid "The title of the tab in the SPARQL query editor holding the default query."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:125
+msgid "The default query shown in the SPARQL query editor."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:126
+msgid "Query Timeout"
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:126
+msgid ""
+"The maximum time in seconds a query is executed. Unfinished queries are "
+"canceled and return no result."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:127
+msgid ""
+"Mange the knowledge graphs that are included in the federation of FedORKG. "
+"Keep in mind that only included knowledge graphs can be queried."
+msgstr ""
+
+#: ckanext/fedorkg/templates/admin_fedorkg.jinja2:128
+msgid "A log of the background tasks for adding and deleting knowledge graphs."
 msgstr ""
 
 #: ckanext/fedorkg/templates/sparql.jinja2:17
@@ -236,31 +282,4 @@ msgid "%(timeout)s second"
 msgid_plural "%(timeout)s seconds"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ckanext/fedorkg/templates/user/dashboard.html:5
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:19
-msgid "FedORKG News"
-msgstr ""
-
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:26
-msgid "Message"
-msgstr ""
-
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:27
-msgid "Date"
-msgstr ""
-
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:40
-msgid "Remove this news entry"
-msgstr ""
-
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:50
-msgid "There are currently no news about added or deleted endpoints."
-msgstr ""
-
-#: ckanext/fedorkg/templates/user/dashboard_fedorkg.html:51
-msgid ""
-"If you add or delete endpoints to FedORKG, the result of the background tasks"
-" will show up here."
-msgstr ""
 
