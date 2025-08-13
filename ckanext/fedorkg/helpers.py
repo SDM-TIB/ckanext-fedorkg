@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 
 def is_fedorkg_page():
     # exclude the admin and dashboard page
-    return False if 'ckan-admin' in h.current_url() or 'dashboard' in h.current_url() else '/fedorkg' in h.current_url()
+    return False if 'ckan-admin' in h.current_url() else '/fedorkg' in h.current_url()
 
 
 def icon():
