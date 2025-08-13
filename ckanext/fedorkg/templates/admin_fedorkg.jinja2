@@ -120,14 +120,12 @@
             FedORKG
         </h2>
         <div class="module-content">
-            {% trans %}
-                <p>Configuration options to manage the FedORKG instance.</p>
-                <p><strong>Default Query Name:</strong> The title of the tab in the SPARQL query editor holding the default query.</p>
-                <p><strong>Default Query:</strong> The default query shown in the SPARQL query editor.</p>
-                <p><strong>Query Timeout:</strong> The maximum time in seconds a query is executed. Unfinished queries are canceled and return no result.</p>
-                <p><strong>Knowledge Graphs in the Federation:</strong> Mange the knowledge graphs that are included in the federation of FedORKG. Keep in mind that only included knowledge graphs can be queried.</p>
-                <p><strong>FedORKG News:</strong> A log of the background tasks for adding and deleting knowledge graphs.</p>
-            {% endtrans %}
+            <p>{% trans %}Configuration options to manage the FedORKG instance.{% endtrans %}</p>
+            <p><strong>{% trans %}Default Query Name{% endtrans %}:</strong> {% trans %}The title of the tab in the SPARQL query editor holding the default query.{% endtrans %}</p>
+            <p><strong>{% trans %}Default Query{% endtrans %}:</strong> {% trans %}The default query shown in the SPARQL query editor.{% endtrans %}</p>
+            <p><strong>{% trans %}Query Timeout{% endtrans %}:</strong> {% trans %}The maximum time in seconds a query is executed. Unfinished queries are canceled and return no result.{% endtrans %}</p>
+            <p><strong>{% trans %}Knowledge Graphs in the Federation{% endtrans %}:</strong> {% trans %}Mange the knowledge graphs that are included in the federation of FedORKG. Keep in mind that only included knowledge graphs can be queried.{% endtrans %}</p>
+            <p><strong>{% trans %}FedORKG News{% endtrans %}:</strong> {% trans %}A log of the background tasks for adding and deleting knowledge graphs.{% endtrans %}</p>
         </div>
     </div>
 {% endblock %}
