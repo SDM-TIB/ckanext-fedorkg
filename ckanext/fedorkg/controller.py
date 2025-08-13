@@ -99,6 +99,10 @@ class FedORKGController:
                         QUERY_TIMEOUT: timeout
                     })
                     toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
+            elif action == 'delete_news':
+                news_id = request.form.get('news_id', None)
+                if news_id is not None:
+                    NewsQuery.delete_news(news_id)
 
         return toolkit.render('admin_fedorkg.jinja2',
                               extra_vars={

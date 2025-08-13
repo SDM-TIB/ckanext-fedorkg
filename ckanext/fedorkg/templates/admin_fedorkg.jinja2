@@ -95,7 +95,8 @@
                         <td>{{ news.message }}</td>
                         <td>{{ news.date }}</td>
                         <td class="center">
-                            <form method="POST" action="{{ h.url_for('dashboard.news') }}">
+                            <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+                                <input type="hidden" name="action" value="delete_news">
                                 <input type="hidden" name="news_id" value="{{ news.identifier }}">
                                 <button class="btn btn-danger btn-sm" title="{% trans %}Remove this news entry{% endtrans %}">
                                     <i class="fa fa-trash"></i>
