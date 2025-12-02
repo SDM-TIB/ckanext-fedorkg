@@ -72,7 +72,7 @@ def llm():
         }
 
         data = {
-            "model": "o1-mini",
+            "model": "o4-mini",
             "messages": [
                 {"role": "user", "content": f"{prompt}\n{question}"}
             ]
