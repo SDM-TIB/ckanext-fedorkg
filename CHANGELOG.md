@@ -1,5 +1,9 @@
 # Changelog
 
+# v0.9.1 - 2025-12-02
+- Update `DeTrusty` to `v0.22.0`
+- Change LLM from `o1-mini` to `o4-mini`
+
 # v0.9.0 - 2025-08-13
 - Update `DeTrusty` to `v0.21.2`
 - Use `DeTrusty` for federation management
