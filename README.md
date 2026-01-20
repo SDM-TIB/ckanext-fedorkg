@@ -14,7 +14,7 @@ The visual query editor connecting the frontend and DeTrusty is implemented usin
 > [!NOTE]
 > This feature is experimental.
 
-Powered by the LLM `o1-mini`, FedORKG is able to answer natural language questions over the federation by relying on the LLM to translate the question into a SPARQL query.
+Powered by the LLM `o4-mini`, FedORKG is able to answer natural language questions over the federation by relying on the LLM to translate the question into a SPARQL query.
 Check steps 3 and 4 in the post-install setup on how to configure this feature.
 
 ## Installation
