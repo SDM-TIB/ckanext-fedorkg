@@ -13,6 +13,7 @@ from ckan.lib.plugins import DefaultTranslation
 from ckanext.fedorkg import cli
 from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
 from ckanext.fedorkg.metadata import FEDORKG_PATH
+import ckanext.fedorkg.auth as auth
 
 log = getLogger(__name__)
 
@@ -23,6 +24,7 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
     p.implements(p.ITemplateHelpers)
     p.implements(p.ITranslation)
     p.implements(p.IClick)
+    p.implements(p.IAuthFunctions)
     if toolkit.check_ckan_version(min_version='2.10'):
         p.implements(p.IConfigDeclaration)
 
@@ -43,6 +45,11 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
 
     def get_blueprint(self):
         return views.get_blueprints()
+
+    def get_auth_functions(self):
+        return {
+            'fedorkg_admin': auth.fedorkg_admin
+        }
 
     def get_helpers(self):
         return {

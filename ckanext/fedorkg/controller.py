@@ -2,15 +2,14 @@ import logging
 from urllib.parse import unquote
 from uuid import uuid4
 
-import ckan.lib.base as base
 import ckan.lib.helpers as h
 import ckan.logic as logic
-import ckan.model as model
 from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config
 from ckan.plugins import toolkit
-from ckanext.fedorkg.metadata import FEDORKG_PATH, SEMSD_PATH, MetadataConfig
+from ckanext.fedorkg.helpers import require_access
+from ckanext.fedorkg.metadata import SEMSD_PATH, MetadataConfig
 from ckanext.fedorkg.model.crud import NewsQuery
 
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
@@ -25,38 +24,24 @@ logger.addHandler(logging.StreamHandler())
 class FedORKGController:
 
     @staticmethod
-    def _check_access():
-        context = {
-            'model': model,
-            'session': model.Session,
-            'user': toolkit.c.user,
-            'auth_user_obj': toolkit.c.userobj
-        }
-        try:
-            logic.check_access('sysadmin', context, {})
-        except logic.NotAuthorized:
-            base.abort(403, toolkit._('Need to be system administrator to administer.'))
-
-    @staticmethod
+    @require_access('fedorkg_admin')
     def delete_kg(kg):
-        FedORKGController._check_access()
         kg = unquote(kg)
         toolkit.enqueue_job(delete_kg_from_federation, [kg], title=f'Deleting {kg} from federation')
         toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
         return h.helper_functions.redirect_to(h.url_for('fedorkg_admin.admin'))
 
     @staticmethod
+    @require_access('fedorkg_admin')
     def add_kg():
-        FedORKGController._check_access()
         kg = request.form.get('kg')
         toolkit.enqueue_job(add_kg_to_federation, [kg], title=f'Adding {kg} to federation')
         toolkit.h.flash_notice(toolkit._('Your request has been added to the job queue. Check the FedORKG news feed for updates on the task.'))
         return h.helper_functions.redirect_to(h.url_for('fedorkg_admin.admin'))
 
     @staticmethod
+    @require_access('fedorkg_admin')
     def admin():
-        FedORKGController._check_access()
-
         error = False
         if request.method == 'POST':
             action = request.form.get('action', None)
