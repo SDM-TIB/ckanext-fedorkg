@@ -1,19 +1,13 @@
-
-import multiprocessing
-import os
-import socket
-import subprocess
 from logging import getLogger
 
 import ckan.plugins as p
 import ckan.plugins.toolkit as toolkit
+import ckanext.fedorkg.auth as auth
 import ckanext.fedorkg.helpers as helpers
 import ckanext.fedorkg.views as views
 from ckan.lib.plugins import DefaultTranslation
 from ckanext.fedorkg import cli
 from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
-from ckanext.fedorkg.metadata import FEDORKG_PATH
-import ckanext.fedorkg.auth as auth
 
 log = getLogger(__name__)
 
