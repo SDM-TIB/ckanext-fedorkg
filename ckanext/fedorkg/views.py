@@ -37,6 +37,7 @@ def query_editor():
                               'margin': margin,
                               'timeout': config.get(QUERY_TIMEOUT),
                               'llm_url': toolkit.url_for('fedorkg.llm'),
+                              'sparql_url': toolkit.url_for('fedorkg.sparql'),
                           })
 
 

@@ -15,7 +15,7 @@ const yasgui = new Yasgui(document.getElementById("yasgui"), {
     },
     requestConfig: {
         // configuring the endpoint for DeTrusty
-        endpoint: window.location.href,
+        endpoint: sparql_url,
         method: "POST",
         args: [{name: "yasqe", value: true}]
     }
