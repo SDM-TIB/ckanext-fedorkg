@@ -60,19 +60,18 @@ def sparql():
 def llm():
     question = request.values.get('question', None)
     if question is None:
-        raise ValueError('ERROR: No question passed.')
+        return jsonify({'error': 'No question passed.'}), 400
     elif len(question) > 128:
-        raise ValueError('ERROR: Your question exceeds 128 characters.')
+        return jsonify({'error': 'Your question exceeds 128 characters.'}), 400
     else:
         api_key = os.environ.get('OPENAI_API_KEY', None)
         if api_key is None:
-            raise ValueError('ERROR: Missing OpenAI API key.')
+            return jsonify({'error': 'Missing OpenAI API key.'}), 500
 
         headers = {
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {api_key}'
         }
-
         data = {
             "model": "o4-mini",
             "messages": [
@@ -83,14 +82,12 @@ def llm():
         try:
             response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
             response.raise_for_status()  # Raise an error for bad status codes
-
             content = response.json()['choices'][0]['message']['content']
             return content
-
         except requests.exceptions.HTTPError as http_err:
-            raise RuntimeError(f"HTTP error occurred: {http_err}")
+            return jsonify({'error': f'HTTP error occurred: {http_err}'}), 502
         except Exception as err:
-            raise RuntimeError(f"An error occurred: {err}")
+            return jsonify({'error': f'An error occurred: {err}'}), 500
 
 
 fedorkg.add_url_rule('/sparql', view_func=query_editor, methods=['GET'])
