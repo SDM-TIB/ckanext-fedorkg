@@ -1,68 +1,70 @@
-const yasgui = new Yasgui(document.getElementById("yasgui"), {
-    persistenceId: null,
-    yasqe: {
-        // modify codemirror tab handling to solely use 2 spaces
-        tabSize: 2,
-        indentUnit: 2,
-        // set default query
-        value: "SELECT DISTINCT ?concept\nWHERE {\n\t?s a ?concept\n} LIMIT 10"
-    },
-    extraKeys: {
-        Tab: function (cm) {
-            var spaces = new Array(cm.getOption("indentUnit") + 1).join(" ");
-            cm.replaceSelection(spaces);
+document.addEventListener('DOMContentLoaded', function () {
+    const yasgui = new Yasgui(document.getElementById("yasgui"), {
+        persistenceId: null,
+        yasqe: {
+            // modify codemirror tab handling to solely use 2 spaces
+            tabSize: 2,
+            indentUnit: 2,
+            // set default query
+            value: "SELECT DISTINCT ?concept\nWHERE {\n\t?s a ?concept\n} LIMIT 10"
+        },
+        extraKeys: {
+            Tab: function (cm) {
+                var spaces = new Array(cm.getOption("indentUnit") + 1).join(" ");
+                cm.replaceSelection(spaces);
+            }
+        },
+        requestConfig: {
+            // configuring the endpoint for DeTrusty
+            endpoint: sparql_url,
+            method: "POST",
+            args: [{name: "yasqe", value: true}]
         }
-    },
-    requestConfig: {
-        // configuring the endpoint for DeTrusty
-        endpoint: sparql_url,
-        method: "POST",
-        args: [{name: "yasqe", value: true}]
+    });
+
+    let tab = yasgui.getTab();
+    tab.setName(default_query_name);
+    tab.setQuery(default_query);
+
+    const llm_form = document.getElementById("llm"),
+          loader = document.querySelector("#loading");
+
+    function displayLoading() {
+        loader.classList.add("display");
     }
-});
 
-let tab = yasgui.getTab();
-tab.setName(default_query_name);
-tab.setQuery(default_query);
+    function hideLoading() {
+        loader.classList.remove("display");
+    }
 
-const llm_form = document.getElementById("llm"),
-      loader = document.querySelector("#loading");
+    llm_form.onsubmit = async function (event) {
+        event.preventDefault();
+        displayLoading();
 
-function displayLoading() {
-    loader.classList.add("display");
-}
+        let data = new FormData();
+        data.append("question", document.getElementById("question").value)
+        let query = await fetch(llm_url, {method: "POST", body: data})
+            .then(res => { hideLoading(); return res.text(); })
+            .catch(err => console.error(err));
 
-function hideLoading() {
-    loader.classList.remove("display");
-}
+        tab = yasgui.getTab();
+        tab.setName("LLM Query");
+        tab.setQuery(query);
+        tab.query();
+    };
 
-llm_form.onsubmit = async function (event) {
-    event.preventDefault();
-    displayLoading();
+    const question_elem = document.getElementById("question"),
+          submit_btn = document.getElementById("llm_submit"),
+          questions = document.querySelectorAll('.question');
 
-    let data = new FormData();
-    data.append("question", document.getElementById("question").value)
-    let query = await fetch(llm_url, {method: "POST", body: data})
-        .then(res => { hideLoading(); return res.text(); })
-        .catch(err => console.error(err));
+    function handleClick(question) {
+        question_elem.value = question;
+        submit_btn.click();
+    }
 
-    tab = yasgui.getTab();
-    tab.setName("LLM Query");
-    tab.setQuery(query);
-    tab.query();
-};
-
-const question_elem = document.getElementById("question"),
-      submit_btn = document.getElementById("llm_submit"),
-      questions = document.querySelectorAll('.question');
-
-function handleClick(question) {
-    question_elem.value = question;
-    submit_btn.click();
-}
-
-questions.forEach(function(element) {
-   element.addEventListener('click', function() {
-       handleClick(element.textContent || element.innerText);
-   });
+    questions.forEach(function(element) {
+        element.addEventListener('click', function() {
+            handleClick(element.textContent || element.innerText);
+        });
+    });
 });
