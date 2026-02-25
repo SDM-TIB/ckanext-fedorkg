@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            const query = await res.tex();
+            const query = await res.text();
             tab = yasgui.getTab();
             tab.setName("LLM Query");
             tab.setQuery(query);
