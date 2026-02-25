@@ -35,7 +35,8 @@ def query_editor():
                               'default_query': config.get(DEFAULT_QUERY_KEY, ''),
                               'default_query_name': config.get(DEFAULT_QUERY_NAME_KEY, ''),
                               'margin': margin,
-                              'timeout': config.get(QUERY_TIMEOUT)
+                              'timeout': config.get(QUERY_TIMEOUT),
+                              'llm_url': toolkit.url_for('fedorkg.llm'),
                           })
 
 

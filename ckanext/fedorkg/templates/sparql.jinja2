@@ -9,7 +9,8 @@
 {% block primary_content %}
     <script>
         const default_query = "{{ default_query|safe }}",
-              default_query_name = "{{ default_query_name }}";
+              default_query_name = "{{ default_query_name }}",
+              llm_url = "{{ llm_url }}";
     </script>
     {% asset 'fedorkg/query' %}
     <div class="mb-6 mt-6 mx-2" id="content-wrap">
