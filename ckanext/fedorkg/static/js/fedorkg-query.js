@@ -22,14 +22,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    function renderYasrError(tab, message) {
+        let existing = tab.yasr.rootEl.querySelector('.yasr-error');
+        if (existing) existing.remove();
+
+        let alertEl = document.createElement('div');
+        alertEl.className = 'alert alert-danger yasr-error';
+        alertEl.textContent = message;
+
+        tab.yasr.rootEl.appendChild(alertEl);
+        tab.yasr.rootEl.classList.add('yasr-has-error');
+    }
+
+    function clearYasrError(tab) {
+        let existing = tab.yasr.rootEl.querySelector('.yasr-error');
+        if (existing) existing.remove();
+        tab.yasr.rootEl.classList.remove('yasr-has-error');
+    }
+
     function attachQueryResponseHook(tab) {
         tab.yasqe.on('queryResponse', function (yasqe, req, duration) {
-            tab.yasr.rootEl.style.display = '';
+            clearYasrError(tab);
             try {
                 let body = JSON.parse(req.text);
                 if (body.error) {
-                    flashError(body.error);
-                    tab.yasr.rootEl.style.display = 'none';
+                    renderYasrError(tab, body.error);
                 }
             } catch (e) {
                 // Not JSON or not parseable — let YASGUI handle it normally
@@ -41,14 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
     tab.setName(default_query_name);
     tab.setQuery(default_query);
     attachQueryResponseHook(tab);
-    tab.yasr.rootEl.style.display = 'none';
 
     yasgui.on('tabAdd', function (yasgui, tabId) {
         setTimeout(function () {
             let newTab = yasgui.getTab(tabId);
             if (newTab) {
                 attachQueryResponseHook(newTab);
-                newTab.yasr.rootEl.style.display = 'none';
             }
         }, 0);
     });
