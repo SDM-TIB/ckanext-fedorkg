@@ -1,5 +1,13 @@
 # Changelog
 
+# v0.10.0 - 2026-02-27
+- Update `DeTrusty` to `v0.23.0`
+- Refactor authentication handling
+- Improve passing of LLM and SPARQL URL
+- Add DOM-ready guard
+- Handle errors on LLM call
+- Handle errors on query execution
+
 # v0.9.1 - 2025-12-02
 - Update `DeTrusty` to `v0.22.0`
 - Change LLM from `o1-mini` to `o4-mini`
