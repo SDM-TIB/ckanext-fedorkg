@@ -1,5 +1,9 @@
 # Changelog
 
+# v0.10.1 - 2026-04-29
+- Fix no `ckan.types` module in CKAN 2.9
+- Update `DeTrusty` to `v0.24.0`
+
 # v0.10.0 - 2026-02-27
 - Update `DeTrusty` to `v0.23.0`
 - Refactor authentication handling
