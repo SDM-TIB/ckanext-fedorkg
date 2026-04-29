@@ -6,7 +6,6 @@ import ckan.lib.helpers as h
 import ckan.logic as logic
 import ckan.model as model
 import ckan.plugins.toolkit as toolkit
-from ckan.types import Context
 
 
 def is_fedorkg_page():
@@ -25,7 +24,7 @@ def require_access(action_name):
     def deco(fn):
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):
-            context: Context = {
+            context = {
                 'model': model,
                 'session': model.Session,
                 'user': toolkit.c.user,
