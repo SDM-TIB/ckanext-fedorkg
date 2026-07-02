@@ -8,7 +8,7 @@ from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config
 from ckan.plugins import toolkit
-from ckanext.fedorkg.helpers import require_access
+from ckanext.fedorkg.helpers import require_access, validate_model_name
 from ckanext.fedorkg.metadata import SEMSD_PATH, MetadataConfig
 from ckanext.fedorkg.model.crud import NewsQuery
 
@@ -87,9 +87,10 @@ class FedORKGController:
                     toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
             elif action == 'llm_model':
                 llm_model = request.form.get(LLM_MODEL_KEY, '')
-                if not llm_model:
+                if not llm_model or not validate_model_name(llm_model):
                     error = True
-                    toolkit.h.flash_error(toolkit._('You need to provide a valid LLM model name.'))
+                    all_models_url = 'https://developers.openai.com/api/docs/models/all'
+                    toolkit.h.flash_error(h.literal(toolkit._('You need to provide a valid LLM model name. Check the available models here:') + f' <a href="{all_models_url}" target="_blank">{all_models_url}</a>'))
 
                 if not error:
                     logic.get_action(u'config_option_update')({

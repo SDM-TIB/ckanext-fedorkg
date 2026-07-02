@@ -1,10 +1,12 @@
 
 import functools
+import os
 
 import ckan.lib.base as base
 import ckan.logic as logic
 import ckan.model as model
 import ckan.plugins.toolkit as toolkit
+import requests
 
 
 def icon():
@@ -31,3 +33,17 @@ def require_access(action_name):
             return fn(*args, **kwargs)
         return wrapper
     return deco
+
+
+def validate_model_name(model_name):
+    url = "https://api.openai.com/v1/models"
+    headers = {"Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY', '')}"}
+
+    try:
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            models = [model_['id'] for model_ in response.json()['data']]
+            return model_name in models
+        return False
+    except:
+        return False
