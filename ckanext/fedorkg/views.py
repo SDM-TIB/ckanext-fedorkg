@@ -8,6 +8,7 @@ from ckan.common import request, config
 from ckan.plugins import toolkit
 from ckanext.fedorkg import __version__ as fedorkg_version
 from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT_KEY, LLM_MODEL_KEY
+from ckanext.fedorkg.helpers import get_api_key
 from ckanext.fedorkg.metadata import FEDORKG_PATH, MetadataConfig
 from flask import Blueprint, jsonify, request
 
@@ -38,7 +39,7 @@ def query_editor():
                               'timeout': config.get(QUERY_TIMEOUT_KEY),
                               'llm_url': toolkit.url_for('fedorkg.llm'),
                               'llm_model': config.get(LLM_MODEL_KEY, ''),
-                              'llm_api_key_set': os.environ.get('OPENAI_API_KEY', None) is not None,
+                              'llm_api_key_set': len(get_api_key()) > 0,
                               'sparql_url': toolkit.url_for('fedorkg.sparql'),
                           })
 
@@ -66,9 +67,9 @@ def llm():
     elif len(question) > 128:
         return jsonify({'error': 'Your question exceeds 128 characters.'}), 400
     else:
-        api_key = os.environ.get('OPENAI_API_KEY', None)
-        if api_key is None:
-            return jsonify({'error': 'Missing OpenAI API key.'}), 500
+        api_key = get_api_key()
+        if api_key == '':
+            return jsonify({'error': 'Missing OpenAI API key.'}), 401
 
         headers = {
             'Content-Type': 'application/json',

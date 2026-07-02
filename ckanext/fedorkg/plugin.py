@@ -57,7 +57,8 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
             DEFAULT_QUERY_KEY: [ignore_missing],
             DEFAULT_QUERY_NAME_KEY: [ignore_missing],
             QUERY_TIMEOUT_KEY: [ignore_missing],
-            LLM_MODEL_KEY: [ignore_missing]
+            LLM_MODEL_KEY: [ignore_missing],
+            helpers.LLM_API_KEY_KEY: [ignore_missing]
         })
 
         return schema
@@ -67,4 +68,5 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         declaration.declare(DEFAULT_QUERY_KEY, 'SELECT DISTINCT ?c WHERE { ?s a ?c }').set_description('Default query')
         declaration.declare(DEFAULT_QUERY_NAME_KEY, 'Covered Concepts').set_description('Name of the default query')
         declaration.declare(QUERY_TIMEOUT_KEY, 60).set_description('Query timeout in seconds')
+        declaration.declare(helpers.LLM_API_KEY_KEY).set_description('OpenAI API key')
         declaration.declare(LLM_MODEL_KEY).set_description('OpenAI LLM model to use for translating NLP to SPARQL')

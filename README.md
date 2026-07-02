@@ -15,7 +15,7 @@ The visual query editor connecting the frontend and DeTrusty is implemented usin
 > This feature is experimental.
 
 Powered by a user-specified LLM, FedORKG is able to answer natural language questions over the federation by relying on the LLM to translate the question into a SPARQL query.
-Check steps 3 and 4 in the post-install setup on how to configure this feature.
+Check step 3 in the post-install setup as well as the configuration options `ckanext.fedorkg.llm.api_key` and `ckanext.fedorkg.llm.model` for how to configure this feature.
 
 ## Installation
 
@@ -51,17 +51,15 @@ pip install -r ./ckanext-fedorkg/requirements.txt
    ```
    $CKAN_STORAGE_PATH/fedorkg/prompt.txt
    ```
-4. Provide your OpenAI API code in an environment variable called `OPENAI_API_KEY`.
-   Also see `ckanext.fedorkg.llm.model` in the configuration options.
-5. Make sure that the CKAN background job workers are running.
+4. Make sure that the CKAN background job workers are running.
    Without them, the federation management features of FedORKG, i.e., adding and deleting knowledge graphs, will not work.
    - CKAN 2.9: https://docs.ckan.org/en/2.9/maintaining/background-tasks.html
    - CKAN 2.10: https://docs.ckan.org/en/2.10/maintaining/background-tasks.html
-6. Initialize the database table for the FedORKG federation management news:
+5. Initialize the database table for the FedORKG federation management news:
    ```bash
    ckan -c $CKAN_INI fedorkg initdb
    ```
-7. Start the FedORKG source description SPARQL endpoint the background:
+6. Start the FedORKG source description SPARQL endpoint the background:
    ```bash
    ckan -c $CKAN_INI fedorkg start &> $CKAN_STORAGE_PATH/fedorkg/fedorkg-metadata.log &
    ```
@@ -74,6 +72,9 @@ pip install -r ./ckanext-fedorkg/requirements.txt
   - Default: Covered Concepts 
 - `ckanext.fedorkg.timeout` query execution timeout in seconds
   - Default: 60
+- `ckanext.fedorkg.llm.api_key` OpenAI API key
+  - Optional, if not provided, the NLP question answering feature cannot be used
+  - May be passed alternatively as environment variable `OPENAI_API_KEY` (backwards compatibility)
 - `ckanext.fedorkg.llm.model` OpenAI LLM model to use for translating NLP to SPARQL
   - Optional, if not provided, the NLP question answering feature cannot be used
 

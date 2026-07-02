@@ -8,7 +8,7 @@ from DeTrusty.Decomposer import Decomposer
 from DeTrusty.Molecule.MTCreation import Endpoint, _accessible_endpoints
 from ckan.common import request, config
 from ckan.plugins import toolkit
-from ckanext.fedorkg.helpers import require_access, validate_model_name
+from ckanext.fedorkg.helpers import require_access, validate_model_name, LLM_API_KEY_KEY, get_api_key
 from ckanext.fedorkg.metadata import SEMSD_PATH, MetadataConfig
 from ckanext.fedorkg.model.crud import NewsQuery
 
@@ -85,9 +85,14 @@ class FedORKGController:
                         QUERY_TIMEOUT_KEY: timeout
                     })
                     toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
-            elif action == 'llm_model':
+            elif action == 'llm':
+                llm_api_key = request.form.get(LLM_API_KEY_KEY, '')
+                if not llm_api_key:
+                    error = True
+                    toolkit.h.flash_error(toolkit._('You need to provide an OpenAI API key.'))
+
                 llm_model = request.form.get(LLM_MODEL_KEY, '')
-                if not llm_model or not validate_model_name(llm_model):
+                if not error and (not llm_model or not validate_model_name(llm_model, llm_api_key)):
                     error = True
                     all_models_url = 'https://developers.openai.com/api/docs/models/all'
                     toolkit.h.flash_error(h.literal(toolkit._('You need to provide a valid LLM model name. Check the available models here:') + f' <a href="{all_models_url}" target="_blank">{all_models_url}</a>'))
@@ -96,9 +101,10 @@ class FedORKGController:
                     logic.get_action(u'config_option_update')({
                         u'user': toolkit.c.user
                     }, {
-                        LLM_MODEL_KEY: llm_model
+                        LLM_MODEL_KEY: llm_model,
+                        LLM_API_KEY_KEY: llm_api_key
                     })
-                    toolkit.h.flash_success(toolkit._('New LLM model set successfully.'))
+                    toolkit.h.flash_success(toolkit._('New LLM configuration set successfully.'))
             elif action == 'delete_news':
                 news_id = request.form.get('news_id', None)
                 if news_id is not None:
@@ -110,6 +116,7 @@ class FedORKGController:
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
                                   'timeout': config.get(QUERY_TIMEOUT_KEY),
                                   'llm_model': config.get(LLM_MODEL_KEY),
+                                  'llm_api_key': get_api_key(),
                                   'kgs': sorted(list(MetadataConfig().getEndpoints().keys())),
                                   'fedorkg_news': NewsQuery.read_all_news()
                               })

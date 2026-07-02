@@ -7,6 +7,9 @@ import ckan.logic as logic
 import ckan.model as model
 import ckan.plugins.toolkit as toolkit
 import requests
+from ckan.common import config
+
+LLM_API_KEY_KEY = 'ckanext.fedorkg.llm.api_key'
 
 
 def icon():
@@ -35,9 +38,13 @@ def require_access(action_name):
     return deco
 
 
-def validate_model_name(model_name):
+def get_api_key():
+    return config.get(LLM_API_KEY_KEY, os.environ.get('OPENAI_API_KEY', ''))
+
+
+def validate_model_name(model_name, api_key=get_api_key()):
     url = "https://api.openai.com/v1/models"
-    headers = {"Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY', '')}"}
+    headers = {"Authorization": f"Bearer {api_key}"}
 
     try:
         response = requests.get(url, headers=headers)
