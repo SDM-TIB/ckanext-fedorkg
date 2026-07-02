@@ -14,7 +14,7 @@ The visual query editor connecting the frontend and DeTrusty is implemented usin
 > [!NOTE]
 > This feature is experimental.
 
-Powered by the LLM `o4-mini`, FedORKG is able to answer natural language questions over the federation by relying on the LLM to translate the question into a SPARQL query.
+Powered by a user-specified LLM, FedORKG is able to answer natural language questions over the federation by relying on the LLM to translate the question into a SPARQL query.
 Check steps 3 and 4 in the post-install setup on how to configure this feature.
 
 ## Installation
@@ -52,6 +52,7 @@ pip install -r ./ckanext-fedorkg/requirements.txt
    $CKAN_STORAGE_PATH/fedorkg/prompt.txt
    ```
 4. Provide your OpenAI API code in an environment variable called `OPENAI_API_KEY`.
+   Also see `ckanext.fedorkg.llm.model` in the configuration options.
 5. Make sure that the CKAN background job workers are running.
    Without them, the federation management features of FedORKG, i.e., adding and deleting knowledge graphs, will not work.
    - CKAN 2.9: https://docs.ckan.org/en/2.9/maintaining/background-tasks.html
@@ -73,6 +74,8 @@ pip install -r ./ckanext-fedorkg/requirements.txt
   - Default: Covered Concepts 
 - `ckanext.fedorkg.timeout` query execution timeout in seconds
   - Default: 60
+- `ckanext.fedorkg.llm.model` OpenAI LLM model to use for translating NLP to SPARQL
+  - Optional, if not provided, the NLP question answering feature cannot be used
 
 ## Commands
 

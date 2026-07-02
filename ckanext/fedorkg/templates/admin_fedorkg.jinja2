@@ -40,6 +40,18 @@
     </div>
 
     <hr>
+    <h2>{% trans %}OpenAI LLM Model{% endtrans %}</h2>
+    <div>
+        <form method="POST" action="{{ h.url_for('fedorkg_admin.admin') }}">
+            {{ form.input('ckanext.fedorkg.llm.model', label=_('LLM Model'), value=llm_model, placeholder=_('o4-mini'), is_required=true) }}
+            <input type="hidden" name="action" value="llm_model">
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" title="{% trans %}Set LLM model{% endtrans %}">{% trans %}Update{% endtrans %}</button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
     <h2>{% trans %}Knowledge Graphs in the Federation{% endtrans %}</h2>
     <table class="table table-header table-hover table-bordered">
         <thead>

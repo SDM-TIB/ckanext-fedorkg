@@ -15,6 +15,7 @@ from ckanext.fedorkg.model.crud import NewsQuery
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
 DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
 QUERY_TIMEOUT_KEY = 'ckanext.fedorkg.timeout'
+LLM_MODEL_KEY = 'ckanext.fedorkg.llm.model'
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -84,6 +85,19 @@ class FedORKGController:
                         QUERY_TIMEOUT_KEY: timeout
                     })
                     toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
+            elif action == 'llm_model':
+                llm_model = request.form.get(LLM_MODEL_KEY, '')
+                if not llm_model:
+                    error = True
+                    toolkit.h.flash_error(toolkit._('You need to provide a valid LLM model name.'))
+
+                if not error:
+                    logic.get_action(u'config_option_update')({
+                        u'user': toolkit.c.user
+                    }, {
+                        LLM_MODEL_KEY: llm_model
+                    })
+                    toolkit.h.flash_success(toolkit._('New LLM model set successfully.'))
             elif action == 'delete_news':
                 news_id = request.form.get('news_id', None)
                 if news_id is not None:
@@ -94,6 +108,7 @@ class FedORKGController:
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
                                   'timeout': config.get(QUERY_TIMEOUT_KEY),
+                                  'llm_model': config.get(LLM_MODEL_KEY),
                                   'kgs': sorted(list(MetadataConfig().getEndpoints().keys())),
                                   'fedorkg_news': NewsQuery.read_all_news()
                               })

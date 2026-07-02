@@ -7,7 +7,7 @@ from DeTrusty import run_query
 from ckan.common import request, config
 from ckan.plugins import toolkit
 from ckanext.fedorkg import __version__ as fedorkg_version
-from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT_KEY
+from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT_KEY, LLM_MODEL_KEY
 from ckanext.fedorkg.metadata import FEDORKG_PATH, MetadataConfig
 from flask import Blueprint, jsonify, request
 
@@ -37,6 +37,7 @@ def query_editor():
                               'margin': margin,
                               'timeout': config.get(QUERY_TIMEOUT_KEY),
                               'llm_url': toolkit.url_for('fedorkg.llm'),
+                              'llm_model': config.get(LLM_MODEL_KEY, ''),
                               'sparql_url': toolkit.url_for('fedorkg.sparql'),
                           })
 
@@ -73,7 +74,7 @@ def llm():
             'Authorization': f'Bearer {api_key}'
         }
         data = {
-            "model": "o4-mini",
+            "model": config.get(LLM_MODEL_KEY, ""),
             "messages": [
                 {"role": "user", "content": f"{prompt}\n{question}"}
             ]

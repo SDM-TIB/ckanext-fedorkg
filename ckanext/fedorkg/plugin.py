@@ -7,7 +7,7 @@ import ckanext.fedorkg.helpers as helpers
 import ckanext.fedorkg.views as views
 from ckan.lib.plugins import DefaultTranslation
 from ckanext.fedorkg import cli
-from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT_KEY
+from ckanext.fedorkg.controller import DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT_KEY, LLM_MODEL_KEY
 
 log = getLogger(__name__)
 
@@ -56,7 +56,8 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         schema.update({
             DEFAULT_QUERY_KEY: [ignore_missing],
             DEFAULT_QUERY_NAME_KEY: [ignore_missing],
-            QUERY_TIMEOUT_KEY: [ignore_missing]
+            QUERY_TIMEOUT_KEY: [ignore_missing],
+            LLM_MODEL_KEY: [ignore_missing]
         })
 
         return schema
@@ -66,3 +67,4 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
         declaration.declare(DEFAULT_QUERY_KEY, 'SELECT DISTINCT ?c WHERE { ?s a ?c }').set_description('Default query')
         declaration.declare(DEFAULT_QUERY_NAME_KEY, 'Covered Concepts').set_description('Name of the default query')
         declaration.declare(QUERY_TIMEOUT_KEY, 60).set_description('Query timeout in seconds')
+        declaration.declare(LLM_MODEL_KEY).set_description('OpenAI LLM model to use for translating NLP to SPARQL')
