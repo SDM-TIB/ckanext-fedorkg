@@ -38,6 +38,7 @@ def query_editor():
                               'timeout': config.get(QUERY_TIMEOUT_KEY),
                               'llm_url': toolkit.url_for('fedorkg.llm'),
                               'llm_model': config.get(LLM_MODEL_KEY, ''),
+                              'llm_api_key_set': os.environ.get('OPENAI_API_KEY', None) is not None,
                               'sparql_url': toolkit.url_for('fedorkg.sparql'),
                           })
 

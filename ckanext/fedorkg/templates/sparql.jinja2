@@ -15,7 +15,7 @@
     </script>
     {% asset 'fedorkg/query' %}
     <div class="mb-6 mt-6 mx-2" id="content-wrap">
-        <details class="mb-3" id="details-llm" open>
+        <details class="mb-3" id="details-llm" open{% if not llm_model or not llm_api_key_set %} style="display: none"{% endif %}>
             <summary class="font-bold"><i class="fa fa-flask" aria-hidden="true"></i>&nbsp;BETA: LDMAsk - {% trans %}LLM-based Question Answering{% endtrans %}</summary>
             <div class="mb-3 py-2">
                 {% trans %}LDMAsk utilizes the LLM <i>{{ llm_model }}</i>. If you do not know what you could ask, here are some examples:{% endtrans %}
@@ -38,9 +38,19 @@
                 </form>
             </div>
         </details>
+        {% if not llm_model %}
+            <script>
+                console.warn("No LLM model set --> disabling LDMAsk");
+            </script>
+        {% endif %}
+        {% if not llm_api_key_set %}
+            <script>
+                console.warn("No LLM API key set --> disabling LDMAsk");
+            </script>
+        {% endif %}
 
         {% trans %}You can use the SPARQL query editor below to run SPARQL queries over a federation of open research knowledge graphs.{% endtrans %}
-        {% trans %}Alternatively, you can try out the beta version of our LLM-based question answering above. This feature will translate your natural language question into a SPARQL query and execute it for you.{% endtrans %}
+        {% if llm_model and llm_api_key_set %}{% trans %}Alternatively, you can try out the beta version of our LLM-based question answering above. This feature will translate your natural language question into a SPARQL query and execute it for you.{% endtrans %}{% endif %}
         <p id="timeout">
             <b>{% trans %}Query execution timeout:{% endtrans %}</b>
             {% trans timeout %}
