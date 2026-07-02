@@ -14,7 +14,7 @@ from ckanext.fedorkg.model.crud import NewsQuery
 
 DEFAULT_QUERY_KEY = 'ckanext.fedorkg.query'
 DEFAULT_QUERY_NAME_KEY = 'ckanext.fedorkg.query.name'
-QUERY_TIMEOUT = 'ckanext.fedorkg.timeout'
+QUERY_TIMEOUT_KEY = 'ckanext.fedorkg.timeout'
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -70,7 +70,7 @@ class FedORKGController:
                 else:
                     toolkit.h.flash_error(toolkit._('The default query and its name are required.'))
             elif action == 'query_timeout':
-                timeout = request.form.get(QUERY_TIMEOUT, '')
+                timeout = request.form.get(QUERY_TIMEOUT_KEY, '')
                 try:
                     timeout = int(timeout)
                 except ValueError:
@@ -81,7 +81,7 @@ class FedORKGController:
                     logic.get_action(u'config_option_update')({
                         u'user': toolkit.c.user
                     }, {
-                        QUERY_TIMEOUT: timeout
+                        QUERY_TIMEOUT_KEY: timeout
                     })
                     toolkit.h.flash_success(toolkit._('New query timeout set successfully.'))
             elif action == 'delete_news':
@@ -93,7 +93,7 @@ class FedORKGController:
                               extra_vars={
                                   'query': config.get(DEFAULT_QUERY_KEY).strip().replace('\\n', '\n'),
                                   'query_name': config.get(DEFAULT_QUERY_NAME_KEY).strip().replace('\\n', '\n'),
-                                  'timeout': config.get(QUERY_TIMEOUT),
+                                  'timeout': config.get(QUERY_TIMEOUT_KEY),
                                   'kgs': sorted(list(MetadataConfig().getEndpoints().keys())),
                                   'fedorkg_news': NewsQuery.read_all_news()
                               })

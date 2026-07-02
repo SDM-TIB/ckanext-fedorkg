@@ -7,7 +7,7 @@ from DeTrusty import run_query
 from ckan.common import request, config
 from ckan.plugins import toolkit
 from ckanext.fedorkg import __version__ as fedorkg_version
-from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT
+from ckanext.fedorkg.controller import FedORKGController, DEFAULT_QUERY_KEY, DEFAULT_QUERY_NAME_KEY, QUERY_TIMEOUT_KEY
 from ckanext.fedorkg.metadata import FEDORKG_PATH, MetadataConfig
 from flask import Blueprint, jsonify, request
 
@@ -35,7 +35,7 @@ def query_editor():
                               'default_query': config.get(DEFAULT_QUERY_KEY, ''),
                               'default_query_name': config.get(DEFAULT_QUERY_NAME_KEY, ''),
                               'margin': margin,
-                              'timeout': config.get(QUERY_TIMEOUT),
+                              'timeout': config.get(QUERY_TIMEOUT_KEY),
                               'llm_url': toolkit.url_for('fedorkg.llm'),
                               'sparql_url': toolkit.url_for('fedorkg.sparql'),
                           })
@@ -52,7 +52,7 @@ def sparql():
             config=MetadataConfig(),
             join_stars_locally=False,
             yasqe=yasqe,
-            timeout=int(config.get(QUERY_TIMEOUT))
+            timeout=int(config.get(QUERY_TIMEOUT_KEY))
         )
     )
 
