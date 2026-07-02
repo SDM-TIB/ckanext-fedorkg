@@ -1,5 +1,13 @@
 # Changelog
 
+# v0.11.0 - 2026-07-02
+- Add feature to set the LLM model via the admin interface
+  - Validate model name against available models
+- Add feature to set OpenAI API key via the admin interface 
+- Hide LDMAsk if LLM model or OpenAI API key not set 
+- Use `h.build_nav()` instead of custom helper for adding FedORKG to header
+- Update German translation
+
 # v0.10.1 - 2026-04-29
 - Fix no `ckan.types` module in CKAN 2.9
 - Update `DeTrusty` to `v0.24.0`
