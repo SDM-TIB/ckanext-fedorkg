@@ -47,7 +47,6 @@ class FedORKG(p.SingletonPlugin, DefaultTranslation):
 
     def get_helpers(self):
         return {
-            'fedorkg_is_fedorkg_page': helpers.is_fedorkg_page,
             'fedorkg_icon': helpers.icon
         }
 
